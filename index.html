@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trento Solutions | Consultoría Financiera, ERP & Automatización</title>
+  <meta name="description" content="Ingeniería de procesos, Odoo/SAP, Python RPA y finanzas de proyectos para transformar la rentabilidad de medianas empresas en México.">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f0f7ff',
+              100: '#e0effe',
+              500: '#0284c7',
+              600: '#0369a1',
+              700: '#075985',
+              800: '#0c4a6e',
+              900: '#082f49',
+            },
+            accent: {
+              400: '#38bdf8',
+              500: '#0ea5e9',
+              teal: '#0d9488',
+              amber: '#f59e0b',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .gradient-hero {
+      background: radial-gradient(120% 120% at 50% 10%, #082f49 0%, #030712 100%);
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glass-card:hover {
+      border-color: rgba(56, 189, 248, 0.3);
+    }
+  </style>
+</head>
+<body class="bg-[#030712] text-slate-200 font-sans antialiased selection:bg-brand-500 selection:text-white">
+
+  <!-- Navigation Bar -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-[#030712]/80 backdrop-blur-md border-b border-slate-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-accent-400 flex items-center justify-center shadow-lg shadow-brand-500/20 group-hover:scale-105 transition-transform">
+          <i data-lucide="layers" class="w-5 h-5 text-white"></i>
+        </div>
+        <div>
+          <span class="text-xl font-bold tracking-tight text-white block leading-tight">TRENTO</span>
+          <span class="text-[10px] tracking-[0.2em] uppercase text-accent-400 font-semibold">Solutions S.A.S.</span>
+        </div>
+      </a>
+
+      <!-- Desktop Links -->
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+        <a href="#soluciones" class="hover:text-white transition-colors">Soluciones</a>
+        <a href="#industrias" class="hover:text-white transition-colors">Industrias</a>
+        <a href="#diferenciadores" class="hover:text-white transition-colors">Por Qué Trento</a>
+        <a href="#equipo" class="hover:text-white transition-colors">Liderazgo</a>
+        <a href="#precios" class="hover:text-white transition-colors">Modelos</a>
+      </div>
+
+      <!-- Action Button -->
+      <div class="flex items-center gap-4">
+        <a href="#contacto" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-lg text-sm font-semibold text-white bg-gradient-to-r from-brand-600 to-accent-500 hover:from-brand-500 hover:to-accent-400 shadow-md shadow-brand-500/20 transition-all hover:shadow-brand-500/40">
+          Agendar Diagnóstico
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="relative pt-32 pb-20 md:pt-44 md:pb-32 gradient-hero overflow-hidden">
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-brand-500/15 rounded-full blur-[120px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-800/80 border border-slate-700/80 text-xs font-medium text-accent-400 mb-8">
+        <span class="w-2 h-2 rounded-full bg-accent-400 animate-pulse"></span>
+        Transformación Financiera & Operativa en México
+      </div>
+
+      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight max-w-4xl mx-auto leading-[1.15]">
+        El control financiero y tecnológico que tu empresa <span class="bg-gradient-to-r from-accent-400 via-sky-300 to-teal-300 bg-clip-text text-transparent">realmente necesita</span>
+      </h1>
+
+      <p class="mt-6 text-lg sm:text-xl text-slate-400 max-w-3xl mx-auto font-normal leading-relaxed">
+        Unimos <strong class="text-slate-200">ingeniería de procesos</strong>, <strong class="text-slate-200">tecnología ágil</strong> (Odoo, SAP, Python RPA) y <strong class="text-slate-200">finanzas de proyectos</strong> para transformar la rentabilidad de medianas empresas sin la burocracia ni los sobrecostos de las Big Four.
+      </p>
+
+      <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="#contacto" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-xl text-base font-semibold text-white bg-gradient-to-r from-brand-600 via-brand-500 to-accent-500 hover:from-brand-500 hover:to-accent-400 shadow-xl shadow-brand-500/25 transition-all">
+          Solicitar Diagnóstico Express
+          <i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i>
+        </a>
+        <a href="#soluciones" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-xl text-base font-semibold text-slate-300 bg-slate-900/80 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 transition-all">
+          Conocer Soluciones
+        </a>
+      </div>
+
+      <!-- Trust Badges -->
+      <div class="mt-16 pt-10 border-t border-slate-800/80 max-w-4xl mx-auto">
+        <p class="text-xs uppercase tracking-widest text-slate-500 font-semibold mb-6">Capacidades e Integración de Ecosistema</p>
+        <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-12 text-slate-400 text-sm font-medium">
+          <div class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i> Odoo ERP Enterprise & Community</div>
+          <div class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i> SAP Business One</div>
+          <div class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i> Automatización Python & RPA</div>
+          <div class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i> Facturación CFDI 4.0 SAT</div>
+          <div class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i> Power BI Dashboards</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem vs Solution (El Dilema del Mid-Market) -->
+  <section id="diferenciadores" class="py-24 bg-slate-950/70 border-t border-b border-slate-800/60 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-xs font-bold tracking-widest uppercase text-accent-400 mb-3">La Realidad del Mercado Mediano</h2>
+        <p class="text-3xl sm:text-4xl font-bold text-white tracking-tight">¿Por qué las soluciones tradicionales fallan?</p>
+        <p class="mt-4 text-slate-400">Las medianas empresas ($30M - $500M MXN) suelen quedar atrapadas entre tres extremos ineficientes.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Box 1 -->
+        <div class="p-8 rounded-2xl glass-card relative overflow-hidden">
+          <div class="w-12 h-12 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-rose-400 mb-6">
+            <i data-lucide="file-x" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">Despachos Contables Tradicionales</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Se enfocan únicamente en la declaración mensual ante el SAT y el cálculo de impuestos. Carecen de visión estratégica, no controlan frentes de obra ni maquinaria, y no entienden de arquitectura de datos.
+          </p>
+          <div class="mt-6 text-xs text-rose-400 font-semibold flex items-center gap-1.5">
+            <i data-lucide="x" class="w-4 h-4"></i> Cero control operativo
+          </div>
+        </div>
+
+        <!-- Box 2 -->
+        <div class="p-8 rounded-2xl glass-card relative overflow-hidden">
+          <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 mb-6">
+            <i data-lucide="code-xml" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">Casas de Software & TI</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Instalan y parametrizan sistemas estándar sin comprender la lógica contable, la auditoría, ni las finanzas de proyectos. Dejan sistemas técnicos desconectados de la realidad operativa de tu negocio.
+          </p>
+          <div class="mt-6 text-xs text-amber-400 font-semibold flex items-center gap-1.5">
+            <i data-lucide="x" class="w-4 h-4"></i> Desconexión financiera
+          </div>
+        </div>
+
+        <!-- Box 3 -->
+        <div class="p-8 rounded-2xl glass-card relative overflow-hidden">
+          <div class="w-12 h-12 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-400 mb-6">
+            <i data-lucide="building" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">Big Four (Consultoras Globales)</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Tarifas millonarias inaccesibles, procesos burocráticos y metodologías rígidas diseñadas para multinacionales públicas, no para la velocidad que requiere el mercado mediano en México.
+          </p>
+          <div class="mt-6 text-xs text-orange-400 font-semibold flex items-center gap-1.5">
+            <i data-lucide="x" class="w-4 h-4"></i> Costos prohibitivos y burocracia
+          </div>
+        </div>
+      </div>
+
+      <!-- Trento Solution Banner -->
+      <div class="mt-12 p-8 sm:p-10 rounded-2xl bg-gradient-to-r from-brand-900/90 via-slate-900 to-brand-950 border border-brand-500/30 flex flex-col lg:flex-row items-center justify-between gap-6 shadow-2xl">
+        <div class="flex items-start gap-5">
+          <div class="w-14 h-14 rounded-2xl bg-brand-500/20 border border-brand-400/30 flex items-center justify-center text-accent-400 shrink-0">
+            <i data-lucide="shield-check" class="w-8 h-8"></i>
+          </div>
+          <div>
+            <h4 class="text-2xl font-bold text-white">El Enfoque Trento: Arquitectura + Finanzas de Obra</h4>
+            <p class="mt-2 text-slate-300 text-sm max-w-2xl leading-relaxed">
+              No reemplazamos a tu contador legal externo; construimos la infraestructura operativa y tecnológica para que tengas visibilidad en tiempo real, conciliaciones automáticas y controles de nivel corporativo.
+            </p>
+          </div>
+        </div>
+        <a href="#contacto" class="shrink-0 px-6 py-3.5 rounded-xl font-semibold text-white bg-brand-600 hover:bg-brand-500 transition-colors shadow-lg shadow-brand-600/30">
+          Hablar con un Especialista
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Solutions Catalog -->
+  <section id="soluciones" class="py-28 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-20">
+        <h2 class="text-xs font-bold tracking-widest uppercase text-accent-400 mb-3">Catálogo de Servicios</h2>
+        <p class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Soluciones de Alto Impacto para tu Operación</p>
+        <p class="mt-4 text-slate-400">Implementaciones rápidas, personalizadas y enfocadas en rentabilidad verificable.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Service 1 -->
+        <div class="p-8 rounded-2xl glass-card flex flex-col justify-between transition-all hover:-translate-y-1">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-sky-500/10 border border-sky-500/20 text-sky-400 flex items-center justify-center mb-6">
+              <i data-lucide="database" class="w-6 h-6"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Implementación & Rescate ERP</h3>
+            <p class="text-xs font-semibold text-accent-400 uppercase tracking-wider mb-4">Odoo & SAP Business One</p>
+            <p class="text-sm text-slate-400 leading-relaxed mb-6">
+              Configuración de punta a punta (Ventas, Compras, Inventario, Facturación CFDI 4.0 y Mantenimiento). Centros de costos analíticos para rentabilidad en tiempo real y rescate de sistemas mal implementados.
+            </p>
+          </div>
+          <ul class="space-y-2.5 text-xs text-slate-300 border-t border-slate-800/80 pt-4">
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Rescate de saldos y catálogos depurados</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Parametrización contable y analítica</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Capacitación para adopción operativa</li>
+          </ul>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="p-8 rounded-2xl glass-card flex flex-col justify-between transition-all hover:-translate-y-1">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-teal-500/10 border border-teal-500/20 text-teal-400 flex items-center justify-center mb-6">
+              <i data-lucide="cpu" class="w-6 h-6"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Automatización & Bots RPA</h3>
+            <p class="text-xs font-semibold text-teal-400 uppercase tracking-wider mb-4">Python + Scripting Operativo</p>
+            <p class="text-sm text-slate-400 leading-relaxed mb-6">
+              Bots que interactúan con portales bancarios, proveedores y sistemas sin API. Conciliaciones masivas automáticas (Bancos vs. ERP, Cartera vs. Depósitos) y validación de XMLs contra órdenes de compra.
+            </p>
+          </div>
+          <ul class="space-y-2.5 text-xs text-slate-300 border-t border-slate-800/80 pt-4">
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Conciliación bancaria en minutos</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Cruce masivo CFDI 4.0 vs. Presupuesto</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Eliminación de errores de captura humana</li>
+          </ul>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="p-8 rounded-2xl glass-card flex flex-col justify-between transition-all hover:-translate-y-1">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center mb-6">
+              <i data-lucide="trending-up" class="w-6 h-6"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Control Financiero & FP&A</h3>
+            <p class="text-xs font-semibold text-amber-400 uppercase tracking-wider mb-4">Proyectos, Obra & Capex</p>
+            <p class="text-sm text-slate-400 leading-relaxed mb-6">
+              Estructura de costos por frente de obra (WBS). Costo horario real de maquinaria (depreciación, combustible, mantenimiento). Modelos de flujo de caja proyectado vinculados a cobranza y estimaciones.
+            </p>
+          </div>
+          <ul class="space-y-2.5 text-xs text-slate-300 border-t border-slate-800/80 pt-4">
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Modelación para licitaciones públicas/privadas</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Cash Burn & Working Capital proyectado</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Rentabilidad real por partida presupuestal</li>
+          </ul>
+        </div>
+
+        <!-- Service 4 -->
+        <div class="p-8 rounded-2xl glass-card flex flex-col justify-between transition-all hover:-translate-y-1">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center mb-6">
+              <i data-lucide="lock" class="w-6 h-6"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Control Interno & Fast Close</h3>
+            <p class="text-xs font-semibold text-purple-400 uppercase tracking-wider mb-4">Mejores Prácticas SOX / COSO</p>
+            <p class="text-sm text-slate-400 leading-relaxed mb-6">
+              Matriz de Riesgos y Controles (RACM) en procesos de Compras y Cobranza. Segregación de Funciones (SoD) en el ERP para blindar la empresa contra fraudes y reducir el cierre contable a menos de 5 días.
+            </p>
+          </div>
+          <ul class="space-y-2.5 text-xs text-slate-300 border-t border-slate-800/80 pt-4">
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Cierre contable de 20 a 5 días hábiles</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Blindaje de aprobaciones y pagos</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Preparación para auditorías corporativas</li>
+          </ul>
+        </div>
+
+        <!-- Service 5 -->
+        <div class="p-8 rounded-2xl glass-card flex flex-col justify-between transition-all hover:-translate-y-1">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center mb-6">
+              <i data-lucide="bar-chart-3" class="w-6 h-6"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Executive Business Intelligence</h3>
+            <p class="text-xs font-semibold text-blue-400 uppercase tracking-wider mb-4">Power BI & Looker</p>
+            <p class="text-sm text-slate-400 leading-relaxed mb-6">
+              Extracción y modelado directo desde tus bases de datos (SQL, Odoo, SAP). Tableros en tiempo real para dirección general: márgenes por máquina/obra, liquidez y avance financiero vs. físico.
+            </p>
+          </div>
+          <ul class="space-y-2.5 text-xs text-slate-300 border-t border-slate-800/80 pt-4">
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Conexión directa a bases de datos</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Visibilidad móvil para directores y socios</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Indicadores clave (DSO, EBIT por unidad)</li>
+          </ul>
+        </div>
+
+        <!-- Service 6 / Health Check -->
+        <div class="p-8 rounded-2xl bg-gradient-to-b from-brand-900/60 to-slate-900 border border-brand-500/40 flex flex-col justify-between transition-all hover:-translate-y-1 shadow-xl">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-accent-500/20 border border-accent-400/40 text-accent-400 flex items-center justify-center mb-6">
+              <i data-lucide="stethoscope" class="w-6 h-6"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Diagnóstico Express</h3>
+            <p class="text-xs font-semibold text-accent-400 uppercase tracking-wider mb-4">Health Check Operativo (2-3 Semanas)</p>
+            <p class="text-sm text-slate-300 leading-relaxed mb-6">
+              Evaluación profunda de tus flujos contables, cuellos de botella en sistemas y riesgos operativos. Recibe una hoja de ruta con plan de arquitectura y ROI proyectado.
+            </p>
+          </div>
+          <div class="border-t border-brand-500/30 pt-4">
+            <p class="text-xs text-accent-400 font-semibold mb-3">100% Acreditable al contratar proyecto core.</p>
+            <a href="#contacto" class="w-full inline-flex items-center justify-center px-4 py-3 rounded-lg text-sm font-semibold text-white bg-brand-600 hover:bg-brand-500 transition-colors">
+              Agendar Diagnóstico
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Specialized Verticals: Construcción & Maquinaria -->
+  <section id="industrias" class="py-24 bg-slate-950/80 border-t border-b border-slate-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-xs font-bold tracking-widest uppercase text-accent-400 mb-3">Verticales Especializadas</h2>
+        <p class="text-3xl sm:text-4xl font-bold text-white tracking-tight">Experiencia Comprobada en Sectores Clave</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <!-- Vertical 1: Construcción -->
+        <div class="p-8 sm:p-10 rounded-2xl glass-card border border-slate-800 relative">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-amber-500/10 text-amber-400 text-xs font-semibold uppercase tracking-wider mb-6">
+            <i data-lucide="hard-hat" class="w-4 h-4"></i> Construcción & Contratistas
+          </div>
+          <h3 class="text-2xl font-bold text-white mb-4">Control Presupuestal de Obra & WBS</h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-6">
+            Resolvemos el principal dolor de las constructoras: la fuga de efectivo entre el presupuesto de licitación, las compras en campo y la cobranza de estimaciones.
+          </p>
+          <div class="space-y-3.5 text-sm text-slate-300">
+            <div class="flex items-start gap-3">
+              <i data-lucide="check-circle" class="w-5 h-5 text-accent-400 shrink-0 mt-0.5"></i>
+              <span><strong>Partidas presupuestales (WBS):</strong> Requisiciones de materiales ligadas directamente a cada concepto de obra.</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <i data-lucide="check-circle" class="w-5 h-5 text-accent-400 shrink-0 mt-0.5"></i>
+              <span><strong>Amortización y retenciones:</strong> Control automático de anticipos, fondos de garantía y deductivas en Odoo.</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <i data-lucide="check-circle" class="w-5 h-5 text-accent-400 shrink-0 mt-0.5"></i>
+              <span><strong>Avance financiero vs. físico:</strong> Detección inmediata de sobrecostos antes de que consuman tu utilidad.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Vertical 2: Maquinaria Pesada -->
+        <div class="p-8 sm:p-10 rounded-2xl glass-card border border-slate-800 relative">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-sky-500/10 text-sky-400 text-xs font-semibold uppercase tracking-wider mb-6">
+            <i data-lucide="truck" class="w-4 h-4"></i> Renta & Mantenimiento
+          </div>
+          <h3 class="text-2xl font-bold text-white mb-4">Gestión de Flota & Maquinaria Pesada</h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-6">
+            Llevamos el control exacto de cada activo por número de serie, horómetro y cuenta analítica individual para saber con precisión cuáles equipos generan margen.
+          </p>
+          <div class="space-y-3.5 text-sm text-slate-300">
+            <div class="flex items-start gap-3">
+              <i data-lucide="check-circle" class="w-5 h-5 text-accent-400 shrink-0 mt-0.5"></i>
+              <span><strong>Costeo horario analítico:</strong> Desglose en tiempo real de depreciación, combustible, mantenimiento y operador.</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <i data-lucide="check-circle" class="w-5 h-5 text-accent-400 shrink-0 mt-0.5"></i>
+              <span><strong>Mantenimiento preventivo por horómetro:</strong> Órdenes de servicio automáticas que evitan paros críticos de equipo.</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <i data-lucide="check-circle" class="w-5 h-5 text-accent-400 shrink-0 mt-0.5"></i>
+              <span><strong>Contratos de renta flexibles:</strong> Facturación parametrizada por día, semana o mes con trazabilidad total.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Leadership / Socios Fundadores -->
+  <section id="equipo" class="py-24 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-xs font-bold tracking-widest uppercase text-accent-400 mb-3">Socios Fundadores</h2>
+        <p class="text-3xl sm:text-4xl font-bold text-white tracking-tight">Liderazgo Multidisciplinario</p>
+        <p class="mt-4 text-slate-400">La combinación exacta entre arquitectura de software de clase mundial y finanzas corporativas de proyectos.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <!-- Iván Santiago -->
+        <div class="p-8 rounded-2xl glass-card flex flex-col justify-between">
+          <div>
+            <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-brand-600 to-accent-400 flex items-center justify-center text-white mb-6 font-bold text-2xl shadow-lg shadow-brand-500/30">
+              IS
+            </div>
+            <h3 class="text-2xl font-bold text-white">Iván Santiago</h3>
+            <p class="text-accent-400 font-semibold text-sm mb-4">Lead de Tecnología & Arquitectura de Sistemas</p>
+            <p class="text-sm text-slate-400 leading-relaxed mb-6">
+              Especialista en arquitectura e implementación técnica de ERPs (Odoo, SAP Business One), desarrollo de integraciones avanzadas y bots en Python / RPA. Lidera el modelado de bases de datos, flujos de datos y analítica ejecutiva.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-slate-800/80 flex flex-wrap gap-2">
+            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-[11px] font-medium text-slate-300">Odoo Core</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-[11px] font-medium text-slate-300">Python RPA</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-[11px] font-medium text-slate-300">Data Engineering</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-[11px] font-medium text-slate-300">Power BI</span>
+          </div>
+        </div>
+
+        <!-- Fernanda Vargas -->
+        <div class="p-8 rounded-2xl glass-card flex flex-col justify-between">
+          <div>
+            <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-teal-600 to-emerald-400 flex items-center justify-center text-white mb-6 font-bold text-2xl shadow-lg shadow-teal-500/30">
+              FV
+            </div>
+            <h3 class="text-2xl font-bold text-white">Fernanda Vargas</h3>
+            <p class="text-teal-400 font-semibold text-sm mb-4">Lead de Finanzas de Proyectos & Relación Institucional</p>
+            <p class="text-sm text-slate-400 leading-relaxed mb-6">
+              Especialista en estructuración financiera y control presupuestal de proyectos de inversión y construcción. Experta en modelación de costos por proyecto (WBS), análisis de licitaciones corporativas y diseño de matrices de control interno (SOX / COSO).
+            </p>
+          </div>
+          <div class="pt-4 border-t border-slate-800/80 flex flex-wrap gap-2">
+            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-[11px] font-medium text-slate-300">Finanzas de Obra</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-[11px] font-medium text-slate-300">Modelos WBS</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-[11px] font-medium text-slate-300">Controles SOX/COSO</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-[11px] font-medium text-slate-300">Licitaciones</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Engagement & Pricing Models -->
+  <section id="precios" class="py-24 bg-slate-950/70 border-t border-slate-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-xs font-bold tracking-widest uppercase text-accent-400 mb-3">Modelos de Contratación</h2>
+        <p class="text-3xl sm:text-4xl font-bold text-white tracking-tight">Inversión Transparente y Enfocada en Retorno</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Tier 1 -->
+        <div class="p-8 rounded-2xl glass-card flex flex-col justify-between">
+          <div>
+            <span class="text-xs uppercase tracking-wider text-slate-400 font-bold">Nivel 1</span>
+            <h3 class="text-xl font-bold text-white mt-1">Health Check Express</h3>
+            <p class="text-xs text-slate-400 mt-2">Diagnóstico de 2 a 3 semanas para evaluar procesos y sistemas.</p>
+            <div class="mt-6">
+              <span class="text-3xl font-extrabold text-white">$35k - $55k</span>
+              <span class="text-xs text-slate-400"> MXN</span>
+            </div>
+            <p class="text-xs text-accent-400 mt-2 font-medium">100% Acreditable si contratas proyecto core</p>
+            <ul class="mt-6 space-y-3 text-xs text-slate-300">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Auditoría de flujo de datos y ERP</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Detección de fugas en compras y obra</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Hoja de ruta técnica con ROI</li>
+            </ul>
+          </div>
+          <a href="#contacto" class="mt-8 w-full py-3 text-center rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-semibold text-xs transition-colors">
+            Solicitar Diagnóstico
+          </a>
+        </div>
+
+        <!-- Tier 2 (Highlighted) -->
+        <div class="p-8 rounded-2xl bg-gradient-to-b from-brand-900/60 to-slate-900 border-2 border-brand-500 flex flex-col justify-between relative shadow-2xl">
+          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3 py-1 bg-gradient-to-r from-brand-600 to-accent-400 rounded-full text-[10px] uppercase font-bold tracking-widest text-white shadow-md">
+            Más Solicitado
+          </div>
+          <div>
+            <span class="text-xs uppercase tracking-wider text-accent-400 font-bold">Nivel 2</span>
+            <h3 class="text-xl font-bold text-white mt-1">Proyectos Core</h3>
+            <p class="text-xs text-slate-300 mt-2">Implementación llave en mano o rescate completo de ERP.</p>
+            <div class="mt-6">
+              <span class="text-3xl font-extrabold text-white">A Medida</span>
+              <span class="text-xs text-slate-400"> (8 - 16 semanas)</span>
+            </div>
+            <p class="text-xs text-slate-400 mt-2">Desde Odoo PyME hasta control avanzado de maquinaria</p>
+            <ul class="mt-6 space-y-3 text-xs text-slate-200">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Arquitectura completa de datos y CFDI 4.0</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Bots Python de conciliación automática</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Centros de costo analíticos por obra/activo</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Tableros de control en Power BI</li>
+            </ul>
+          </div>
+          <a href="#contacto" class="mt-8 w-full py-3 text-center rounded-xl bg-gradient-to-r from-brand-600 to-accent-500 hover:from-brand-500 hover:to-accent-400 text-white font-semibold text-xs shadow-lg transition-all">
+            Cotizar Proyecto
+          </a>
+        </div>
+
+        <!-- Tier 3 -->
+        <div class="p-8 rounded-2xl glass-card flex flex-col justify-between">
+          <div>
+            <span class="text-xs uppercase tracking-wider text-slate-400 font-bold">Nivel 3</span>
+            <h3 class="text-xl font-bold text-white mt-1">FP&A as a Service</h3>
+            <p class="text-xs text-slate-400 mt-2">Acompañamiento mensual continuo para dirección.</p>
+            <div class="mt-6">
+              <span class="text-3xl font-extrabold text-white">$25k - $60k</span>
+              <span class="text-xs text-slate-400"> MXN / mes</span>
+            </div>
+            <p class="text-xs text-slate-400 mt-2">Contrato mínimo de 6 meses</p>
+            <ul class="mt-6 space-y-3 text-xs text-slate-300">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Supervisión y soporte continuo a ERP</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Análisis de flujo de caja y proyecciones</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Sesiones mensuales con socios fundadores</li>
+            </ul>
+          </div>
+          <a href="#contacto" class="mt-8 w-full py-3 text-center rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-semibold text-xs transition-colors">
+            Consultar Disponibilidad
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Lead Form Section -->
+  <section id="contacto" class="py-24 relative overflow-hidden">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="p-8 sm:p-12 rounded-3xl glass-card border border-brand-500/30 bg-slate-900/90 shadow-2xl">
+        <div class="text-center max-w-xl mx-auto mb-10">
+          <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 text-accent-400 flex items-center justify-center mx-auto mb-4">
+            <i data-lucide="send" class="w-6 h-6"></i>
+          </div>
+          <h2 class="text-3xl font-bold text-white">Inicia la Transformación de tu Negocio</h2>
+          <p class="mt-3 text-sm text-slate-400">Déjanos tus datos para coordinar una llamada de 20 minutos con nuestros socios fundadores y evaluar tu caso sin compromiso.</p>
+        </div>
+
+        <form id="contactForm" onsubmit="event.preventDefault(); handleFormSubmit();" class="space-y-5">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Nombre Completo</label>
+              <input type="text" id="name" required placeholder="Tu nombre" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-none focus:border-brand-500 transition-colors text-sm">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Correo Electrónico</label>
+              <input type="email" id="email" required placeholder="tu@empresa.com" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-none focus:border-brand-500 transition-colors text-sm">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Empresa / Razón Social</label>
+              <input type="text" id="company" required placeholder="Nombre de tu empresa" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-none focus:border-brand-500 transition-colors text-sm">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Industria / Giro</label>
+              <select id="industry" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-brand-500 transition-colors text-sm">
+                <option value="Construcción">Construcción / Obra</option>
+                <option value="Maquinaria">Renta de Maquinaria Pesada</option>
+                <option value="Manufactura">Manufactura & Distribución</option>
+                <option value="Servicios">Servicios Corporativos</option>
+                <option value="Otro">Otro</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">¿Cuál es tu principal desafío operativo o financiero hoy?</label>
+            <textarea id="message" rows="3" placeholder="Ej. Necesitamos conciliar bancos automáticamente, implementar Odoo o controlar costos de obra..." class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-none focus:border-brand-500 transition-colors text-sm resize-none"></textarea>
+          </div>
+
+          <button type="submit" class="w-full py-4 rounded-xl text-base font-semibold text-white bg-gradient-to-r from-brand-600 via-brand-500 to-accent-500 hover:from-brand-500 hover:to-accent-400 shadow-xl shadow-brand-500/25 transition-all">
+            Solicitar Evaluación de Caso
+          </button>
+        </form>
+
+        <div id="successNotice" class="hidden mt-6 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-center text-sm">
+          ✓ ¡Gracias! Tu mensaje ha sido registrado. Te responderemos a la brevedad para coordinar la sesión.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-800/80 bg-slate-950 py-12 text-slate-500 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center text-white">
+          <i data-lucide="layers" class="w-4 h-4"></i>
+        </div>
+        <div>
+          <p class="font-bold text-slate-300">Trento Solutions S.A.S.</p>
+          <p class="text-[10px] text-slate-500">Sociedad por Acciones Simplificada · México</p>
+        </div>
+      </div>
+
+      <div class="text-center sm:text-right">
+        <p>© 2026 Trento Solutions S.A.S. Todos los derechos reservados.</p>
+        <p class="mt-1 text-[11px] text-slate-600">Consultoría de procesos y sistemas de gestión empresarial.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    function handleFormSubmit() {
+      const name = document.getElementById('name').value;
+      const company = document.getElementById('company').value;
+      const industry = document.getElementById('industry').value;
+      const message = document.getElementById('message').value;
+
+      const text = encodeURIComponent(`Hola Trento Solutions, soy ${name} de ${company} (${industry}). Me interesa evaluar una consultoría para nuestro caso: ${message}`);
+      
+      document.getElementById('successNotice').classList.remove('hidden');
+      
+      setTimeout(() => {
+        window.open(`https://wa.me/?text=${text}`, '_blank');
+      }, 800);
+    }
+  </script>
+</body>
+</html>
