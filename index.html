@@ -1,661 +1,261 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trento Solutions S.A.S. | Consultoría Financiera & Automatización ERP</title>
-  <meta name="description" content="Consultoría estratégica que une ingeniería de software, arquitectura ERP (Odoo/SAP), automatización en Python y finanzas corporativas para transformar empresas de todos los sectores en México.">
-  
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <!-- GSAP for Animations -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <!-- Google Fonts: Inter & Outfit -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Inter', 'system-ui', 'sans-serif'],
-            display: ['Outfit', 'system-ui', 'sans-serif'],
-          },
-          colors: {
-            ink: '#09090b',        // Near black
-            muted: '#71717a',      // Zinc 500
-            surface: '#fafafa',    // Zinc 50
-            border: '#e4e4e7',     // Zinc 200
-            cta: '#c6f134',        // Ramp-style chartreuse
-            ctaHover: '#b5e022',
-            accent: '#18181b',     // Zinc 900
-          },
-          boxShadow: {
-            'soft': '0 4px 40px -2px rgba(0, 0, 0, 0.04)',
-            'float': '0 20px 40px -10px rgba(0, 0, 0, 0.08)',
-          },
-          animation: {
-            'blob': 'blob 7s infinite',
-          },
-          keyframes: {
-            blob: {
-              '0%': { transform: 'translate(0px, 0px) scale(1)' },
-              '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
-              '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
-              '100%': { transform: 'translate(0px, 0px) scale(1)' },
-            }
-          }
-        }
-      }
-    }
-  </script>
-
-  <style>
-    /* UX Refinements */
-    html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-    ::selection { background: #c6f134; color: #09090b; }
-    
-    /* Hide scrollbar for clean look */
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: #fafafa; }
-    ::-webkit-scrollbar-thumb { background: #d4d4d8; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #a1a1aa; }
-
-    /* Custom utilities */
-    .glass-nav {
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(228, 228, 231, 0.5);
-    }
-    
-    .bento-card {
-      background: #ffffff;
-      border: 1px solid #e4e4e7;
-      border-radius: 24px;
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .bento-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.08);
-      border-color: #d4d4d8;
-    }
-
-    /* Ambient background blobs */
-    .ambient-blob {
-      position: absolute;
-      filter: blur(80px);
-      z-index: -1;
-      opacity: 0.4;
-      border-radius: 50%;
-    }
-
-    /* Initial state for GSAP */
-    .gsap-reveal { opacity: 0; transform: translateY(30px); }
-    .gsap-scale { opacity: 0; transform: scale(0.95); }
-    
-    /* Text gradient */
-    .text-gradient {
-      background: linear-gradient(135deg, #09090b 0%, #71717a 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trento Solutions | Automatización Financiera y Contable</title>
+  <meta name="description" content="Automatizamos los procesos financieros y contables de empresas medianas: conciliaciones, cierre de mes, cuentas por pagar, integración ERP y reportes ejecutivos." />
+  <meta name="theme-color" content="#05060a" />
+  <meta property="og:title" content="Trento Solutions | Automatización Financiera y Contable" />
+  <meta property="og:description" content="Tu contabilidad, en piloto automático. Automatización financiera para empresas medianas." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script type="module" src="/src/main.js"></script>
 </head>
+<body>
+  <canvas id="webgl" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="cursor-glow" aria-hidden="true"></div>
 
-<body class="bg-surface text-ink font-sans relative overflow-x-hidden">
-
-  <!-- Ambient Background -->
-  <div class="fixed inset-0 overflow-hidden pointer-events-none z-[-1]">
-    <div class="ambient-blob w-96 h-96 bg-cta/20 top-[-10%] left-[-10%] animate-blob"></div>
-    <div class="ambient-blob w-[500px] h-[500px] bg-blue-100/40 top-[20%] right-[-20%] animate-blob" style="animation-delay: 2s;"></div>
-  </div>
-
-  <!-- ──────────────── NAVIGATION ──────────────── -->
-  <nav class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300" id="navbar">
-    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-      <!-- Logo -->
-      <a href="#" class="flex items-center gap-3 group">
-        <div class="w-10 h-10 rounded-xl bg-ink flex items-center justify-center transition-transform group-hover:scale-105 duration-300">
-          <i data-lucide="hexagon" class="w-5 h-5 text-cta"></i>
-        </div>
-        <span class="text-xl font-display font-semibold tracking-tight text-ink">Trento</span>
+  <!-- ================= NAV ================= -->
+  <header class="nav" id="nav">
+    <div class="container nav__inner">
+      <a href="#top" class="brand" aria-label="Trento Solutions">
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4.5 26 10.25v11.5L16 27.5 6 21.75v-11.5Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M11.5 13.5h9M16 13.5v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span>Trento</span>
       </a>
-
-      <!-- Desktop Links -->
-      <div class="hidden md:flex items-center gap-8">
-        <a href="#soluciones" class="text-sm font-medium text-muted hover:text-ink transition-colors">Plataforma</a>
-        <a href="#casos" class="text-sm font-medium text-muted hover:text-ink transition-colors">Impacto</a>
-        <a href="#liderazgo" class="text-sm font-medium text-muted hover:text-ink transition-colors">Nosotros</a>
-      </div>
-
-      <!-- CTA -->
-      <div class="flex items-center gap-4">
-        <a href="#contacto" class="hidden sm:inline-flex items-center justify-center h-10 px-6 rounded-full text-sm font-medium text-ink bg-cta hover:bg-ctaHover transition-all duration-300 hover:shadow-[0_0_20px_rgba(198,241,52,0.4)]">
-          Hablar con Ventas
-        </a>
+      <nav class="nav__links" id="navLinks">
+        <a href="#servicios" data-i18n="nav.services">Servicios</a>
+        <a href="#proceso" data-i18n="nav.process">Cómo trabajamos</a>
+        <a href="#equipo" data-i18n="nav.team">Equipo</a>
+        <a href="#contacto" data-i18n="nav.contact">Contacto</a>
+      </nav>
+      <div class="nav__actions">
+        <div class="lang" role="group" aria-label="Idioma / Language">
+          <button type="button" data-lang="es" aria-pressed="true">ES</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <button class="nav__burger" id="burger" type="button" aria-label="Menú" aria-expanded="false" aria-controls="navLinks"><span></span><span></span></button>
       </div>
     </div>
-  </nav>
+  </header>
 
-  <!-- ──────────────── HERO SECTION ──────────────── -->
-  <section class="relative pt-40 pb-32 sm:pt-48 sm:pb-40 px-6 overflow-hidden min-h-[90vh] flex flex-col justify-center">
-    <div class="max-w-5xl mx-auto text-center relative z-10">
-      
-      <!-- Pill Badge -->
-      <div class="gsap-hero inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-border shadow-sm mb-8">
-        <span class="relative flex h-2.5 w-2.5">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cta opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-cta"></span>
-        </span>
-        <span class="text-xs font-medium tracking-wide text-ink uppercase">Operaciones Financieras Inteligentes</span>
+  <main id="top">
+    <!-- ================= HERO ================= -->
+    <section class="hero">
+      <div class="container hero__inner">
+        <p class="eyebrow" data-anim><span class="dot"></span><span data-i18n="hero.eyebrow">Automatización financiera · Empresas medianas</span></p>
+        <h1 class="hero__title" data-anim data-i18n="hero.title">Tu contabilidad,<br /><em>en piloto automático.</em></h1>
+        <p class="hero__lead" data-anim data-i18n="hero.lead">Automatizamos los procesos financieros y contables de empresas medianas: conciliaciones, cierre de mes, cuentas por pagar y reportes que corren solos. Para que tu equipo deje de capturar y empiece a decidir.</p>
+        <div class="hero__ctas" data-anim>
+          <a href="#servicios" class="btn btn--primary magnetic"><span data-i18n="hero.cta1">Ver qué automatizamos</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a href="#proceso" class="btn btn--ghost magnetic" data-i18n="hero.cta2">Cómo trabajamos</a>
+        </div>
       </div>
 
-      <!-- Headline -->
-      <h1 class="gsap-hero text-[3.5rem] sm:text-[5rem] lg:text-[6rem] leading-[1.05] tracking-tight font-display font-medium text-ink mb-8">
-        Finanzas de gran escala.<br/>
-        <span class="text-gradient">Automatizadas.</span>
-      </h1>
+      <div class="hero__chips" aria-hidden="true">
+        <div class="chip chip--a" data-depth="0.6"><i class="ok"></i><span data-i18n="chip.a">Conciliación bancaria · automatizada</span></div>
+        <div class="chip chip--b" data-depth="1"><i class="ok"></i><span data-i18n="chip.b">CFDI validado contra orden de compra</span></div>
+        <div class="chip chip--c" data-depth="0.4"><i class="run"></i><span data-i18n="chip.c">Póliza contable generada</span></div>
+      </div>
 
-      <!-- Subheadline -->
-      <p class="gsap-hero mt-6 text-lg sm:text-xl text-muted max-w-2xl mx-auto leading-relaxed font-light">
-        Unimos el rigor analítico de las Big Four con la agilidad tecnológica de Big Tech. Transformamos la rentabilidad de empresas en crecimiento sin importar el sector.
-      </p>
+      <div class="scroll-hint" aria-hidden="true"><span data-i18n="hero.scroll">Desliza</span><i></i></div>
+    </section>
 
-      <!-- CTA Group -->
-      <div class="gsap-hero mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href="#contacto" class="w-full sm:w-auto h-14 px-8 rounded-full flex items-center justify-center gap-2 text-base font-medium text-ink bg-cta hover:bg-ctaHover transition-all duration-300 hover:shadow-[0_0_30px_rgba(198,241,52,0.5)] group">
-          Solicitar Diagnóstico
-          <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
-        </a>
-        <a href="#casos" class="w-full sm:w-auto h-14 px-8 rounded-full flex items-center justify-center gap-2 text-base font-medium text-ink bg-white border border-border hover:bg-zinc-50 transition-all duration-300 shadow-sm hover:shadow-md">
-          Explorar Casos
-        </a>
+    <!-- ================= MARQUEE ================= -->
+    <div class="marquee" aria-label="Procesos que automatizamos">
+      <div class="marquee__track">
+        <ul data-i18n="marquee">
+          <li>Conciliación bancaria</li><li>Cuentas por pagar</li><li>Cuentas por cobrar</li><li>Validación de CFDI</li><li>Cierre de mes</li><li>Pólizas contables</li><li>Flujo de efectivo</li><li>Integración ERP</li><li>Tableros ejecutivos</li><li>Reportes de gestión</li>
+        </ul>
       </div>
     </div>
 
-    <!-- Interface Preview / Bento Grid Hero -->
-    <div class="gsap-scale mt-24 max-w-6xl mx-auto w-full relative z-10 px-4">
-      <div class="bg-white rounded-[2rem] p-4 sm:p-8 border border-border shadow-float grid grid-cols-1 md:grid-cols-3 gap-6">
-        <!-- Metric Card -->
-        <div class="bg-surface rounded-2xl p-6 border border-borderLight flex flex-col justify-between h-40">
-          <div class="flex items-center gap-3 text-muted">
-            <i data-lucide="zap" class="w-5 h-5"></i>
-            <span class="text-sm font-medium">Cierre Mensual</span>
+    <!-- ================= TRANSFORMATION (pinned, drives 3D) ================= -->
+    <section class="transform" id="transform">
+      <div class="transform__stage">
+        <div class="container transform__inner">
+          <div class="transform__head">
+            <p class="kicker" data-i18n="tf.kicker">La transformación</p>
+            <h2 class="h2" data-i18n="tf.title">Del caos <em>al control.</em></h2>
+          </div>
+          <ol class="steps">
+            <li class="step is-active">
+              <span class="step__num">01</span>
+              <h3 data-i18n="tf.s1.t">Hoy: todo es manual</h3>
+              <p data-i18n="tf.s1.d">Excel, correos y captura a mano. La información vive dispersa entre bancos, ERP y hojas de cálculo, y el cierre depende de que nadie se equivoque.</p>
+            </li>
+            <li class="step">
+              <span class="step__num">02</span>
+              <h3 data-i18n="tf.s2.t">Conectamos tus datos</h3>
+              <p data-i18n="tf.s2.d">Integramos bancos, ERP, CFDI y tus archivos en un solo flujo, con reglas contables claras y trazables.</p>
+            </li>
+            <li class="step">
+              <span class="step__num">03</span>
+              <h3 data-i18n="tf.s3.t">Operación automatizada</h3>
+              <p data-i18n="tf.s3.d">Bots y scripts hacen el trabajo repetitivo. Tu equipo solo revisa excepciones y decide con información al día.</p>
+            </li>
+          </ol>
+          <div class="progress" aria-hidden="true"><i></i></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SERVICES ================= -->
+    <section class="section" id="servicios">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="kicker" data-i18n="sv.kicker">Servicios</p>
+          <h2 class="h2" data-i18n="sv.title">Lo que <em>automatizamos.</em></h2>
+          <p class="section__lead" data-i18n="sv.lead">Nuestro foco es eliminar el trabajo manual de finanzas y contabilidad. Diseñamos, construimos y mantenemos la automatización de punta a punta.</p>
+        </div>
+
+        <div class="cards">
+          <article class="card card--wide tilt reveal">
+            <div class="card__body">
+              <span class="card__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 9-3 3 3 3M16 9l3 3-3 3M13.5 6l-3 12"/></svg></span>
+              <h3 data-i18n="sv.c1.t">Automatización con Python &amp; RPA</h3>
+              <p data-i18n="sv.c1.d">Bots que concilian bancos, cruzan CFDI contra órdenes de compra y facturas, generan pólizas y eliminan la captura manual.</p>
+            </div>
+            <div class="terminal" aria-hidden="true">
+              <div class="terminal__bar"><i></i><i></i><i></i><span>reconcile.py</span></div>
+              <pre class="terminal__body" id="terminal"></pre>
+            </div>
+          </article>
+
+          <article class="card tilt reveal">
+            <span class="card__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="6" height="6" rx="1.5"/><rect x="14" y="4" width="6" height="6" rx="1.5"/><rect x="4" y="14" width="6" height="6" rx="1.5"/><rect x="14" y="14" width="6" height="6" rx="1.5"/></svg></span>
+            <h3 data-i18n="sv.c2.t">Integración ERP · Odoo &amp; SAP</h3>
+            <p data-i18n="sv.c2.d">Implementamos y conectamos tu ERP con bancos y sistemas externos. Catálogo de cuentas y centros de costo diseñados para ver la rentabilidad real de cada unidad.</p>
+          </article>
+
+          <article class="card tilt reveal">
+            <span class="card__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span>
+            <h3 data-i18n="sv.c3.t">BI &amp; tableros ejecutivos</h3>
+            <p data-i18n="sv.c3.d">Tableros conectados directo a tus datos para seguir liquidez, cartera, gastos y márgenes sin esperar al cierre.</p>
+            <div class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          </article>
+
+          <article class="card card--wide tilt reveal">
+            <div class="card__body">
+              <span class="card__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 11l3 3 8-8"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg></span>
+              <h3 data-i18n="sv.c4.t">Cierre contable &amp; control</h3>
+              <p data-i18n="sv.c4.d">Rediseñamos el cierre de mes con checklists, flujos de aprobación y controles automáticos para cerrar más rápido y con menos errores.</p>
+            </div>
+            <ul class="checklist" aria-hidden="true">
+              <li data-i18n="sv.c4.l1">Conciliaciones bancarias</li>
+              <li data-i18n="sv.c4.l2">Provisiones y pólizas</li>
+              <li data-i18n="sv.c4.l3">Revisión de excepciones</li>
+              <li data-i18n="sv.c4.l4">Aprobación y reporte</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="advisory reveal">
+          <div>
+            <p class="kicker" data-i18n="ad.kicker">También</p>
+            <h3 class="h3" data-i18n="ad.title">Y cuando lo necesitas, <em>asesoría financiera.</em></h3>
           </div>
           <div>
-            <div class="text-3xl font-display font-semibold text-ink">4 Días</div>
-            <div class="text-sm text-emerald-600 font-medium mt-1">↓ 82% vs Promedio (22 días)</div>
-          </div>
-        </div>
-        <!-- Metric Card -->
-        <div class="bg-ink rounded-2xl p-6 flex flex-col justify-between h-40 text-white shadow-xl relative overflow-hidden">
-          <div class="absolute top-0 right-0 w-32 h-32 bg-cta/20 rounded-full blur-2xl -mr-10 -mt-10"></div>
-          <div class="flex items-center gap-3 text-zinc-400 relative z-10">
-            <i data-lucide="bar-chart-2" class="w-5 h-5"></i>
-            <span class="text-sm font-medium">Activos Gestionados</span>
-          </div>
-          <div class="relative z-10">
-            <div class="text-3xl font-display font-semibold text-white">+$100M USD</div>
-            <div class="text-sm text-zinc-400 mt-1">En infraestructura y operaciones</div>
-          </div>
-        </div>
-        <!-- Metric Card -->
-        <div class="bg-surface rounded-2xl p-6 border border-borderLight flex flex-col justify-between h-40">
-          <div class="flex items-center gap-3 text-muted">
-            <i data-lucide="check-circle-2" class="w-5 h-5"></i>
-            <span class="text-sm font-medium">Conciliación Bancaria</span>
-          </div>
-          <div>
-            <div class="text-3xl font-display font-semibold text-ink">99.4%</div>
-            <div class="text-sm text-emerald-600 font-medium mt-1">Automatizada vía RPA</div>
+            <p data-i18n="ad.desc">Seguimos acompañando a direcciones de finanzas en planeación financiera, proyecciones de flujo de efectivo y controllership. Con los datos ya automatizados, el análisis llega antes y con más confianza.</p>
+            <ul class="tags">
+              <li>FP&amp;A</li>
+              <li data-i18n="ad.t2">Flujo de efectivo</li>
+              <li>Controllership</li>
+              <li data-i18n="ad.t4">Presupuestos</li>
+            </ul>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ──────────────── LOGOS / TRUST ──────────────── -->
-  <section class="py-12 border-y border-border bg-white">
-    <div class="max-w-7xl mx-auto px-6">
-      <p class="text-center text-xs font-semibold text-muted uppercase tracking-widest mb-8">Nuestros fundadores han liderado proyectos en</p>
-      <div class="flex flex-wrap justify-center items-center gap-12 sm:gap-20 opacity-60 grayscale">
-        <!-- Text stand-ins for logos -->
-        <span class="text-xl font-display font-bold">EY</span>
-        <span class="text-xl font-display font-bold">PwC</span>
-        <span class="text-xl font-display font-bold">Deloitte</span>
-        <span class="text-xl font-display font-bold">Takeda</span>
-        <span class="text-xl font-display font-bold">BSP</span>
+    <!-- ================= PROCESS ================= -->
+    <section class="section" id="proceso">
+      <div class="container process">
+        <div class="section__head process__head reveal">
+          <p class="kicker" data-i18n="pr.kicker">Método</p>
+          <h2 class="h2" data-i18n="pr.title">Cómo <em>trabajamos.</em></h2>
+          <p class="section__lead" data-i18n="pr.lead">Proyectos por etapas, con entregables visibles desde las primeras semanas.</p>
+        </div>
+        <ol class="timeline">
+          <li class="timeline__line" aria-hidden="true"><i></i></li>
+          <li class="tl reveal"><span class="tl__num">01</span><div><h3 data-i18n="pr.s1.t">Diagnóstico</h3><p data-i18n="pr.s1.d">Mapeamos tus procesos financieros y detectamos dónde se pierde el tiempo.</p></div></li>
+          <li class="tl reveal"><span class="tl__num">02</span><div><h3 data-i18n="pr.s2.t">Diseño</h3><p data-i18n="pr.s2.d">Definimos qué se automatiza, con qué herramientas y con qué controles.</p></div></li>
+          <li class="tl reveal"><span class="tl__num">03</span><div><h3 data-i18n="pr.s3.t">Construcción</h3><p data-i18n="pr.s3.d">Desarrollamos e integramos por etapas, con pruebas sobre tus datos reales.</p></div></li>
+          <li class="tl reveal"><span class="tl__num">04</span><div><h3 data-i18n="pr.s4.t">Operación</h3><p data-i18n="pr.s4.d">Monitoreamos, damos soporte y capacitamos a tu equipo para que la automatización perdure.</p></div></li>
+        </ol>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ──────────────── CAPABILITIES (BENTO GRID) ──────────────── -->
-  <section id="soluciones" class="py-32 px-6">
-    <div class="max-w-7xl mx-auto">
-      
-      <div class="max-w-2xl mb-20 gsap-reveal">
-        <h2 class="text-4xl sm:text-5xl font-display font-medium text-ink tracking-tight mb-6">
-          La pila financiera moderna.
-        </h2>
-        <p class="text-lg text-muted font-light leading-relaxed">
-          Reemplazamos software genérico y hojas de cálculo con una arquitectura integrada. Diseñada para escalar operaciones en retail, servicios corporativos, manufactura y tecnología.
-        </p>
-      </div>
-
-      <!-- Bento Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[320px]">
-        
-        <!-- Feature 1 (Large) -->
-        <div class="bento-card md:col-span-2 p-8 sm:p-10 flex flex-col justify-between gsap-reveal group">
-          <div class="max-w-md">
-            <div class="w-12 h-12 rounded-full bg-zinc-100 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-              <i data-lucide="database" class="w-6 h-6 text-ink"></i>
-            </div>
-            <h3 class="text-2xl font-display font-semibold text-ink mb-3">Arquitectura ERP Core</h3>
-            <p class="text-muted leading-relaxed font-light">Implementación profunda de Odoo y SAP. Unificamos ventas, compras, inventario y facturación CFDI 4.0 bajo un modelo analítico que revela la rentabilidad real de cada unidad de negocio.</p>
-          </div>
-          <!-- Abstract UI element -->
-          <div class="absolute bottom-0 right-0 w-64 h-48 bg-surface border-t border-l border-border rounded-tl-2xl flex items-end justify-end p-6 translate-y-8 translate-x-8 group-hover:translate-y-4 group-hover:translate-x-4 transition-transform duration-500">
-             <div class="w-full space-y-3 opacity-50">
-               <div class="h-2 w-full bg-border rounded"></div>
-               <div class="h-2 w-3/4 bg-border rounded"></div>
-               <div class="h-2 w-5/6 bg-border rounded"></div>
-             </div>
-          </div>
+    <!-- ================= WHY ================= -->
+    <section class="section section--tight">
+      <div class="container why">
+        <div class="why__item reveal">
+          <h3 data-i18n="wy.1.t">Fundadores en cada proyecto</h3>
+          <p data-i18n="wy.1.d">Sin delegar a juniors. Quien diseña tu solución es quien la construye.</p>
         </div>
-
-        <!-- Feature 2 -->
-        <div class="bento-card p-8 sm:p-10 flex flex-col justify-between gsap-reveal bg-ink text-white">
-          <div>
-            <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-6">
-              <i data-lucide="cpu" class="w-6 h-6 text-cta"></i>
-            </div>
-            <h3 class="text-2xl font-display font-semibold mb-3">RPA & Bots en Python</h3>
-            <p class="text-zinc-400 leading-relaxed font-light text-sm">Scripts autónomos que ejecutan conciliaciones bancarias, cruzan CFDI contra órdenes de compra y eliminan la captura manual.</p>
-          </div>
-          <div class="mt-8 font-mono text-xs text-cta/80 bg-black/40 p-4 rounded-xl border border-white/10">
-            > import reconciler<br>
-            > sys.run_auto_match()<br>
-            <span class="text-emerald-400">✓ 4,203 rows matched</span>
-          </div>
+        <div class="why__item reveal">
+          <h3 data-i18n="wy.2.t">Finanzas + código</h3>
+          <p data-i18n="wy.2.d">Entendemos la contabilidad y escribimos el código. No hay traducción entre consultor y programador.</p>
         </div>
-
-        <!-- Feature 3 -->
-        <div class="bento-card p-8 sm:p-10 flex flex-col justify-between gsap-reveal">
-          <div>
-            <div class="w-12 h-12 rounded-full bg-zinc-100 flex items-center justify-center mb-6">
-              <i data-lucide="pie-chart" class="w-6 h-6 text-ink"></i>
-            </div>
-            <h3 class="text-xl font-display font-semibold mb-3 text-ink">Business Intelligence</h3>
-            <p class="text-muted leading-relaxed font-light text-sm">Tableros ejecutivos en Power BI conectados directo a la base de datos para monitorear liquidez, DSO y EBITDA en tiempo real.</p>
-          </div>
-        </div>
-
-        <!-- Feature 4 (Large) -->
-        <div class="bento-card md:col-span-2 p-8 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-8 gsap-reveal bg-[#f4f4f5]">
-          <div class="max-w-sm">
-            <div class="w-12 h-12 rounded-full bg-white shadow-sm flex items-center justify-center mb-6">
-              <i data-lucide="shield-check" class="w-6 h-6 text-ink"></i>
-            </div>
-            <h3 class="text-2xl font-display font-semibold text-ink mb-3">Control Interno & Cumplimiento</h3>
-            <p class="text-muted leading-relaxed font-light">Matriz RACM, segregación de funciones (SoD) y flujos de aprobación dinámicos. Prepara tu empresa para auditorías de clase mundial e inversión institucional.</p>
-          </div>
-          <div class="w-full md:w-64 bg-white p-5 rounded-2xl shadow-soft border border-border relative">
-            <div class="flex items-center gap-3 mb-4 border-b border-borderLight pb-3">
-              <div class="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center text-amber-600"><i data-lucide="lock" class="w-4 h-4"></i></div>
-              <div>
-                <div class="text-xs font-semibold text-ink">Approval Required</div>
-                <div class="text-[10px] text-muted">Wire Transfer > $50k</div>
-              </div>
-            </div>
-            <div class="flex gap-2">
-              <div class="flex-1 h-8 rounded bg-zinc-100"></div>
-              <div class="flex-1 h-8 rounded bg-ink"></div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ──────────────── DYNAMIC TABS / CASES ──────────────── -->
-  <section id="casos" class="py-32 px-6 bg-white border-y border-border">
-    <div class="max-w-7xl mx-auto">
-      
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20 gsap-reveal">
-        <div class="max-w-2xl">
-          <h2 class="text-4xl sm:text-5xl font-display font-medium text-ink tracking-tight mb-6">
-            Resultados comprobados.
-          </h2>
-          <p class="text-lg text-muted font-light leading-relaxed">
-            Nuestros frameworks han sido puestos a prueba en corporativos globales y adaptados para empresas medianas ágiles.
-          </p>
+        <div class="why__item reveal">
+          <h3 data-i18n="wy.3.t">A la medida de empresas medianas</h3>
+          <p data-i18n="wy.3.d">Prácticas de grandes corporativos, sin la complejidad ni las licencias que no necesitas.</p>
         </div>
       </div>
+    </section>
 
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        <!-- Content List -->
-        <div class="space-y-12">
-          <!-- Item 1 -->
-          <div class="group cursor-pointer gsap-reveal">
-            <div class="flex items-center gap-4 mb-4">
-              <span class="text-cta font-mono font-bold">01</span>
-              <h3 class="text-2xl font-display font-semibold text-ink group-hover:text-muted transition-colors">Visibilidad Financiera Cross-Sector</h3>
-            </div>
-            <p class="text-muted font-light leading-relaxed pl-10 border-l-2 border-border group-hover:border-ink transition-colors">
-              Despliegue de arquitecturas WBS y centros de costo. Ya sea gestionando $100M+ en activos fijos o controlando el margen de múltiples sucursales retail, habilitamos el rastreo de rentabilidad exacta por unidad de negocio y P&L en tiempo real.
-            </p>
-          </div>
-          <!-- Item 2 -->
-          <div class="group cursor-pointer gsap-reveal">
-            <div class="flex items-center gap-4 mb-4">
-              <span class="text-cta font-mono font-bold">02</span>
-              <h3 class="text-2xl font-display font-semibold text-ink group-hover:text-muted transition-colors">Fast-Close Contable</h3>
-            </div>
-            <p class="text-muted font-light leading-relaxed pl-10 border-l-2 border-border group-hover:border-ink transition-colors">
-              De 22 días a 4 días para el cierre de mes. Integrando flujos de Odoo/SAP con automatización de extracción bancaria en Python. Conciliamos miles de transacciones automáticamente con una precisión del 99.4%.
-            </p>
-          </div>
-          <!-- Item 3 -->
-          <div class="group cursor-pointer gsap-reveal">
-            <div class="flex items-center gap-4 mb-4">
-              <span class="text-cta font-mono font-bold">03</span>
-              <h3 class="text-2xl font-display font-semibold text-ink group-hover:text-muted transition-colors">FP&A e Inteligencia de Negocio</h3>
-            </div>
-            <p class="text-muted font-light leading-relaxed pl-10 border-l-2 border-border group-hover:border-ink transition-colors">
-              Eliminación de la dependencia de despachos externos. Modelación analítica, proyecciones de flujo de caja (Cash Burn) y control de capital de trabajo conectados a tableros ejecutivos.
-            </p>
-          </div>
+    <!-- ================= TEAM ================= -->
+    <section class="section" id="equipo">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="kicker" data-i18n="tm.kicker">Equipo</p>
+          <h2 class="h2" data-i18n="tm.title">Ejecución <em>por fundadores.</em></h2>
+          <p class="section__lead" data-i18n="tm.lead">Experiencia en automatización financiera en Google y trayectoria en firmas Big Four y corporativos globales.</p>
         </div>
-
-        <!-- Visual / Graphic Side -->
-        <div class="relative h-[600px] rounded-3xl bg-surface border border-border overflow-hidden gsap-scale hidden lg:flex items-center justify-center p-12">
-          <!-- Abstract representation of data flow -->
-          <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#09090b 1px, transparent 1px); background-size: 24px 24px;"></div>
-          
-          <div class="w-full max-w-md bg-white rounded-2xl shadow-float border border-border p-8 relative z-10">
-            <div class="flex justify-between items-center mb-8">
-              <h4 class="font-display font-semibold text-ink">EBITDA Consolidado</h4>
-              <span class="text-emerald-500 bg-emerald-50 px-2 py-1 rounded text-xs font-semibold">+14.2%</span>
-            </div>
-            <div class="flex items-end gap-3 h-40">
-              <div class="w-full bg-zinc-100 rounded-t-lg h-1/4"></div>
-              <div class="w-full bg-zinc-200 rounded-t-lg h-2/4 relative group"><div class="absolute inset-0 bg-ink opacity-0 group-hover:opacity-10 transition-opacity rounded-t-lg"></div></div>
-              <div class="w-full bg-zinc-300 rounded-t-lg h-1/3"></div>
-              <div class="w-full bg-cta rounded-t-lg h-3/4 relative shadow-[0_0_15px_rgba(198,241,52,0.5)]"></div>
-              <div class="w-full bg-ink rounded-t-lg h-full"></div>
-            </div>
-            <div class="flex justify-between text-[10px] text-muted font-mono mt-4">
-              <span>Q1</span><span>Q2</span><span>Q3</span><span>Q4</span><span>YTD</span>
-            </div>
-          </div>
+        <div class="team">
+          <article class="person tilt reveal">
+            <div class="person__avatar">IS</div>
+            <h3>Iván Santiago</h3>
+            <p class="person__role" data-i18n="tm.p1.r">Co-Founder · Automatización &amp; Arquitectura</p>
+            <p data-i18n="tm.p1.d">Experiencia en automatización de procesos financieros en Google y trayectoria en EY y Deloitte. Especialista en automatización con Python y arquitectura ERP (Odoo/SAP).</p>
+            <ul class="tags"><li>Python</li><li>ERP</li><li>BI</li></ul>
+            <a class="person__link" href="https://www.linkedin.com/in/ivan-santiago-t/" target="_blank" rel="noopener">LinkedIn ↗</a>
+          </article>
+          <article class="person tilt reveal">
+            <div class="person__avatar">FT</div>
+            <h3>Fernanda Tejeda</h3>
+            <p class="person__role" data-i18n="tm.p2.r">Co-Founder · Finanzas &amp; Control</p>
+            <p data-i18n="tm.p2.d">Experiencia en automatización de procesos financieros en Google y trayectoria en PwC Acceleration Centers y Takeda México. Especialista en controllership internacional y optimización de flujos contables. MBA por la Universidad Anáhuac.</p>
+            <ul class="tags"><li>Controllership</li><li>FP&amp;A</li><li data-i18n="tm.p2.tag">Cierre contable</li></ul>
+            <a class="person__link" href="https://www.linkedin.com/in/fernanda-tejeda-vargas/" target="_blank" rel="noopener">LinkedIn ↗</a>
+          </article>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ──────────────── TEAM ──────────────── -->
-  <section id="liderazgo" class="py-32 px-6 bg-surface">
-    <div class="max-w-7xl mx-auto">
-      
-      <div class="text-center max-w-2xl mx-auto mb-20 gsap-reveal">
-        <h2 class="text-4xl sm:text-5xl font-display font-medium text-ink tracking-tight mb-6">
-          Ejecución por fundadores.
-        </h2>
-        <p class="text-lg text-muted font-light leading-relaxed">
-          Sin delegar a juniors. Cada proyecto es diseñado e implementado personalmente por arquitectos con experiencia en Big Tech y Big Four.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-        <!-- Profile 1 -->
-        <div class="bento-card p-10 gsap-reveal">
-          <div class="flex justify-between items-start mb-8">
-            <div class="w-16 h-16 rounded-2xl bg-ink text-white flex items-center justify-center font-display font-bold text-2xl">
-              IS
-            </div>
-            <a href="https://www.linkedin.com/in/ivan-santiago-t/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Iván Santiago" class="w-10 h-10 rounded-full border border-border flex items-center justify-center hover:bg-zinc-100 hover:border-zinc-400 transition-colors">
-              <svg class="w-4 h-4 fill-current text-ink" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.32a1.62 1.62 0 1 0 1.62 1.62 1.62 1.62 0 0 0-1.62-1.62Z"/></svg>
-            </a>
-          </div>
-          <h3 class="text-2xl font-display font-semibold text-ink mb-1">Iván Santiago</h3>
-          <p class="text-sm font-medium text-muted mb-6">Co-Founder · Lead Tech & Arquitectura</p>
-          <p class="text-muted font-light leading-relaxed mb-6">Trayectoria en EY y Deloitte. Especialista en automatización financiera en Python, arquitectura ERP (Odoo/SAP) y gestión financiera de activos complejos (+$100M USD en proyectos de infraestructura).</p>
-          <div class="flex flex-wrap gap-2">
-             <span class="px-3 py-1 rounded-full bg-zinc-100 text-xs font-medium text-ink">Python</span>
-             <span class="px-3 py-1 rounded-full bg-zinc-100 text-xs font-medium text-ink">ERP Arch</span>
-             <span class="px-3 py-1 rounded-full bg-zinc-100 text-xs font-medium text-ink">Power BI</span>
-          </div>
-        </div>
-
-        <!-- Profile 2 -->
-        <div class="bento-card p-10 gsap-reveal">
-          <div class="flex justify-between items-start mb-8">
-            <div class="w-16 h-16 rounded-2xl bg-cta text-ink flex items-center justify-center font-display font-bold text-2xl">
-              FT
-            </div>
-            <a href="https://www.linkedin.com/in/fernanda-tejeda-vargas/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Fernanda Tejeda" class="w-10 h-10 rounded-full border border-border flex items-center justify-center hover:bg-zinc-100 hover:border-zinc-400 transition-colors">
-              <svg class="w-4 h-4 fill-current text-ink" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.32a1.62 1.62 0 1 0 1.62 1.62 1.62 1.62 0 0 0-1.62-1.62Z"/></svg>
-            </a>
-          </div>
-          <h3 class="text-2xl font-display font-semibold text-ink mb-1">Fernanda Tejeda</h3>
-          <p class="text-sm font-medium text-muted mb-6">Co-Founder · Lead Finanzas & Control</p>
-          <p class="text-muted font-light leading-relaxed mb-6">Trayectoria en PwC Acceleration Centers y Takeda México. Especialista en Controllership internacional, control interno SOX/COSO y optimización de flujos contables corporativos. MBA por la Universidad Anáhuac.</p>
-          <div class="flex flex-wrap gap-2">
-             <span class="px-3 py-1 rounded-full bg-zinc-100 text-xs font-medium text-ink">Controllership</span>
-             <span class="px-3 py-1 rounded-full bg-zinc-100 text-xs font-medium text-ink">SOX/COSO</span>
-             <span class="px-3 py-1 rounded-full bg-zinc-100 text-xs font-medium text-ink">FP&A</span>
-          </div>
+    <!-- ================= CONTACT ================= -->
+    <section class="section contact" id="contacto">
+      <div class="container contact__inner reveal">
+        <span class="badge"><span class="dot"></span><span data-i18n="ct.badge">Próximamente</span></span>
+        <h2 class="contact__title" data-i18n="ct.title">Automaticemos <em>tu operación.</em></h2>
+        <p class="section__lead" data-i18n="ct.lead">Estamos preparando nuestro canal de contacto. Mientras tanto, puedes encontrarnos en LinkedIn.</p>
+        <div class="hero__ctas contact__ctas">
+          <a class="btn btn--ghost magnetic" href="https://www.linkedin.com/in/ivan-santiago-t/" target="_blank" rel="noopener">Iván Santiago ↗</a>
+          <a class="btn btn--ghost magnetic" href="https://www.linkedin.com/in/fernanda-tejeda-vargas/" target="_blank" rel="noopener">Fernanda Tejeda ↗</a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <!-- ──────────────── CONTACT ──────────────── -->
-  <section id="contacto" class="py-32 px-6 bg-ink text-white relative overflow-hidden">
-    <!-- Dark mode ambient blobs -->
-    <div class="absolute inset-0 overflow-hidden pointer-events-none">
-      <div class="ambient-blob w-[600px] h-[600px] bg-cta/10 top-[-20%] right-[-10%] animate-blob"></div>
-    </div>
-
-    <div class="max-w-4xl mx-auto relative z-10">
-      <div class="text-center mb-16 gsap-reveal">
-        <h2 class="text-4xl sm:text-6xl font-display font-medium text-white tracking-tight mb-6">
-          Sube el nivel de tu operación.
-        </h2>
-        <p class="text-xl text-zinc-400 font-light max-w-2xl mx-auto">
-          Agenda un diagnóstico operativo de 20 minutos con los socios fundadores.
-        </p>
-      </div>
-
-      <div class="bg-white/5 backdrop-blur-xl border border-white/10 p-8 sm:p-12 rounded-3xl gsap-scale">
-        <form id="contactForm" onsubmit="event.preventDefault(); handleFormSubmit();" class="space-y-6">
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div>
-              <label class="block text-sm font-medium text-zinc-300 mb-2">Nombre</label>
-              <input type="text" id="name" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-zinc-500 focus:outline-none focus:border-cta focus:ring-1 focus:ring-cta transition-colors">
-            </div>
-            <div>
-              <label class="block text-sm font-medium text-zinc-300 mb-2">Empresa</label>
-              <input type="text" id="company" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-zinc-500 focus:outline-none focus:border-cta focus:ring-1 focus:ring-cta transition-colors">
-            </div>
-          </div>
-          <div>
-            <label class="block text-sm font-medium text-zinc-300 mb-2">¿Cuál es el cuello de botella actual de tu área financiera?</label>
-            <textarea id="message" rows="3" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-zinc-500 focus:outline-none focus:border-cta focus:ring-1 focus:ring-cta transition-colors resize-none"></textarea>
-          </div>
-          <button type="submit" class="w-full h-14 rounded-xl text-ink bg-cta hover:bg-ctaHover text-base font-semibold transition-all duration-300 hover:shadow-[0_0_30px_rgba(198,241,52,0.3)]">
-            Contactar vía WhatsApp
-          </button>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- ──────────────── FOOTER ──────────────── -->
-  <footer class="bg-ink text-zinc-400 py-12 px-6 border-t border-white/10">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-      <div class="flex items-center gap-3">
-        <div class="w-8 h-8 rounded bg-white/10 flex items-center justify-center">
-          <i data-lucide="hexagon" class="w-4 h-4 text-white"></i>
-        </div>
-        <span class="text-white font-display font-semibold">Trento Solutions S.A.S.</span>
-      </div>
-
-      <!-- Social Links on the bottom -->
-      <div class="flex items-center gap-6 text-xs text-zinc-400">
-        <a href="https://www.linkedin.com/in/ivan-santiago-t/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors flex items-center gap-1.5">
-          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.32a1.62 1.62 0 1 0 1.62 1.62 1.62 1.62 0 0 0-1.62-1.62Z"/></svg>
-          <span>Iván Santiago</span>
-        </a>
-        <a href="https://www.linkedin.com/in/fernanda-tejeda-vargas/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors flex items-center gap-1.5">
-          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.32a1.62 1.62 0 1 0 1.62 1.62 1.62 1.62 0 0 0-1.62-1.62Z"/></svg>
-          <span>Fernanda Tejeda</span>
-        </a>
-      </div>
-
-      <div class="text-sm font-light flex flex-col md:flex-row items-center gap-4">
-        <span>© 2026 Trento Solutions. Ciudad de México.</span>
-        <a href="aviso-privacidad.html" class="hover:text-white transition-colors underline decoration-white/30 underline-offset-4 text-xs">Aviso de Privacidad</a>
-      </div>
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span>© 2026 Trento Solutions S.A.S. · <span data-i18n="ft.city">Ciudad de México</span></span>
+      <a href="aviso-privacidad.html" data-i18n="ft.privacy">Aviso de Privacidad</a>
     </div>
   </footer>
-
-  <!-- ──────────────── COOKIE CONSENT BANNER ──────────────── -->
-  <div id="cookieBanner" class="fixed bottom-6 left-6 right-6 md:left-auto md:right-8 md:max-w-md z-50 bg-white/95 backdrop-blur-md p-5 rounded-2xl border border-border shadow-float transition-all duration-500 transform translate-y-36 opacity-0 pointer-events-none">
-    <div class="flex items-start gap-3.5">
-      <div class="w-9 h-9 rounded-xl bg-surface border border-border flex items-center justify-center shrink-0 mt-0.5 text-ink">
-        <svg class="w-5 h-5 fill-none stroke-current" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2a10 10 0 1 0 10 10c0-.55-.45-1-1-1a3 3 0 0 1-3-3c0-.55-.45-1-1-1a3 3 0 0 1-3-3c0-.55-.45-1-1-1a1 1 0 0 0-1-1zm-3.5 9a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm6 4a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm-4 3a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg>
-      </div>
-      <div class="flex-1">
-        <div class="flex items-center justify-between">
-          <h5 class="text-sm font-semibold text-ink font-display">Preferencia de Cookies</h5>
-          <button onclick="dismissCookies()" class="text-muted hover:text-ink text-xs p-1" aria-label="Cerrar">✕</button>
-        </div>
-        <p class="text-xs text-muted leading-relaxed mt-1">
-          Utilizamos cookies esenciales y analíticas para optimizar tu experiencia y medir el rendimiento del sitio web conforme a la normativa mexicana (LFPDPPP). Consulta nuestro <a href="aviso-privacidad.html" class="underline hover:text-ink">Aviso de Privacidad</a>.
-        </p>
-        <div class="mt-3.5 flex items-center gap-2">
-          <button onclick="acceptCookies()" class="px-4 py-1.5 rounded-full text-xs font-semibold bg-cta hover:bg-ctaHover text-ink transition-colors shadow-sm">
-            Aceptar todas
-          </button>
-          <button onclick="dismissCookies()" class="px-3.5 py-1.5 rounded-full text-xs font-medium text-muted hover:text-ink border border-border bg-white transition-colors">
-            Solo necesarias
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ──────────────── SCRIPTS ──────────────── -->
-  <script>
-    // Initialize Icons
-    lucide.createIcons();
-
-    // Cookie Banner Logic
-    function initCookieBanner() {
-      const consent = localStorage.getItem('trento_cookie_consent');
-      if (!consent) {
-        setTimeout(() => {
-          const banner = document.getElementById('cookieBanner');
-          if (banner) {
-            banner.classList.remove('translate-y-36', 'opacity-0', 'pointer-events-none');
-          }
-        }, 1200);
-      }
-    }
-
-    function acceptCookies() {
-      localStorage.setItem('trento_cookie_consent', 'accepted');
-      hideCookieBanner();
-    }
-
-    function dismissCookies() {
-      localStorage.setItem('trento_cookie_consent', 'essential_only');
-      hideCookieBanner();
-    }
-
-    function hideCookieBanner() {
-      const banner = document.getElementById('cookieBanner');
-      if (banner) {
-        banner.classList.add('translate-y-36', 'opacity-0', 'pointer-events-none');
-      }
-    }
-
-    // Navbar Scroll Effect
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 20) {
-        navbar.classList.add('shadow-sm');
-      } else {
-        navbar.classList.remove('shadow-sm');
-      }
-    });
-
-    // Form Submission
-    function handleFormSubmit() {
-      const name = document.getElementById('name').value;
-      const company = document.getElementById('company').value;
-      const message = document.getElementById('message').value;
-      const text = encodeURIComponent(`Hola Trento Solutions, soy ${name} de ${company}. Me interesa hablar sobre el siguiente reto: ${message}`);
-      window.open(`https://wa.me/5215500000000?text=${text}`, '_blank');
-    }
-
-    // GSAP Animations
-    document.addEventListener("DOMContentLoaded", (event) => {
-      initCookieBanner();
-      gsap.registerPlugin(ScrollTrigger);
-
-      // Hero Animation
-      gsap.fromTo(".gsap-hero", 
-        { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1, stagger: 0.15, ease: "power3.out" }
-      );
-
-      // Scroll Reveal Elements
-      gsap.utils.toArray('.gsap-reveal').forEach(elem => {
-        gsap.fromTo(elem, 
-          { y: 40, opacity: 0 },
-          {
-            scrollTrigger: {
-              trigger: elem,
-              start: "top 85%",
-            },
-            y: 0,
-            opacity: 1,
-            duration: 0.8,
-            ease: "power3.out"
-          }
-        );
-      });
-
-      // Scroll Scale Elements
-      gsap.utils.toArray('.gsap-scale').forEach(elem => {
-        gsap.fromTo(elem, 
-          { scale: 0.95, opacity: 0 },
-          {
-            scrollTrigger: {
-              trigger: elem,
-              start: "top 85%",
-            },
-            scale: 1,
-            opacity: 1,
-            duration: 0.8,
-            ease: "power3.out"
-          }
-        );
-      });
-    });
-  </script>
 </body>
 </html>
