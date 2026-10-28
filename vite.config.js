@@ -4,8 +4,8 @@ import { fileURLToPath } from 'node:url';
 const root = (file) => fileURLToPath(new URL(file, import.meta.url));
 
 export default defineConfig({
-  // GitHub Pages serves the repo at https://<user>.github.io/trento/
-  base: '/trento/',
+  // Served at the custom domain root: https://trentosolutions.com/
+  base: '/',
   build: {
     // three.js is lazy-loaded in its own chunk after the page paints.
     chunkSizeWarningLimit: 600,
