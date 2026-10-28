@@ -12,8 +12,7 @@
   "dependencies": {
     "gsap": "3.12.5",
     "lenis": "1.1.13",
-    "three": "0.169.0",
-    "jszip": "3.10.1"
+    "three": "0.169.0"
   },
   "devDependencies": {
     "vite": "5.4.10",
