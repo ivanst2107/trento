@@ -15,7 +15,7 @@ Requiere Node 20+.
 
 ```bash
 npm install
-npm run dev      # http://localhost:5173/trento/
+npm run dev      # http://localhost:5173/
 npm run build    # genera dist/
 ```
 
