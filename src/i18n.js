@@ -79,9 +79,9 @@ const EN = {
   'tm.p2.d': 'Experience in finance process automation at Google, with a background at PwC Acceleration Centers and Takeda Mexico. Specialist in international controllership and accounting workflow optimization. MBA, Universidad Anáhuac.',
   'tm.p2.tag': 'Accounting close',
 
-  'ct.badge': 'Coming soon',
+  'ct.badge': 'Write to us',
   'ct.title': 'Let’s automate <em>your operations.</em>',
-  'ct.lead': 'We’re setting up our contact channel. In the meantime, you can find us on LinkedIn.',
+  'ct.lead': 'Tell us which processes take up most of your time and we’ll get back to you soon.',
 
   'ft.city': 'Mexico City',
   'ft.privacy': 'Privacy Notice (Spanish)',
