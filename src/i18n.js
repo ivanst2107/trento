@@ -4,6 +4,7 @@ const EN = {
   'nav.services': 'Services',
   'nav.process': 'How we work',
   'nav.team': 'Team',
+  'nav.demo': 'Demo',
   'nav.contact': 'Contact',
 
   'hero.eyebrow': 'Finance automation · Mid-size companies',

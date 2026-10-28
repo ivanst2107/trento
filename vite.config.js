@@ -13,6 +13,7 @@ export default defineConfig({
       input: {
         main: root('./index.html'),
         privacy: root('./aviso-privacidad.html'),
+        demo: root('./demo/index.html'),
       },
     },
   },

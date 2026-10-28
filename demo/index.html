@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Demo de conciliación bancaria vs CFDI | Trento Solutions</title>
+  <meta name="description" content="Prueba gratis: carga tus XML de CFDI y tu estado de cuenta, y obtén la conciliación y las pólizas en borrador en segundos. Todo se procesa en tu navegador." />
+  <meta name="theme-color" content="#05060a" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script type="module" src="/src/demo/app.js"></script>
+</head>
+<body class="no-webgl">
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="nav is-scrolled">
+    <div class="container nav__inner">
+      <a href="/" class="brand" aria-label="Trento Solutions">
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4.5 26 10.25v11.5L16 27.5 6 21.75v-11.5Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M11.5 13.5h9M16 13.5v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span>Trento</span>
+      </a>
+      <a href="/" class="btn btn--ghost">← Inicio</a>
+    </div>
+  </header>
+
+  <main class="demo">
+    <div class="container">
+      <section class="demo__intro">
+        <span class="badge"><span class="dot"></span>Demo interactiva</span>
+        <h1>Conciliación bancaria <em>contra CFDI,</em> en segundos.</h1>
+        <p class="section__lead">Carga los XML de tus facturas y tu estado de cuenta. Emparejamos cada movimiento con su CFDI, señalamos lo que no cuadra y generamos las pólizas en borrador.</p>
+        <p class="demo__privacy">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+          Todo se procesa en tu navegador: tus archivos no se envían a ningún servidor.
+        </p>
+        <div class="hero__ctas">
+          <button type="button" class="btn btn--primary" id="runSample">Probar con datos de ejemplo<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          <button type="button" class="btn btn--ghost" id="downloadSample">Descargar ejemplo (.zip)</button>
+        </div>
+      </section>
+
+      <section class="demo__inputs" aria-label="Archivos">
+        <label class="drop" id="dropXml">
+          <input type="file" id="xmlInput" multiple accept=".xml,.zip" />
+          <span class="drop__step">1</span>
+          <strong>CFDI (XML o ZIP)</strong>
+          <span class="drop__hint">Facturas emitidas, recibidas y complementos de pago. Acepta el ZIP de la descarga masiva del SAT.</span>
+          <span class="drop__status" id="xmlStatus">Arrastra o elige archivos</span>
+        </label>
+        <label class="drop" id="dropCsv">
+          <input type="file" id="csvInput" accept=".csv,.txt" />
+          <span class="drop__step">2</span>
+          <strong>Estado de cuenta (CSV)</strong>
+          <span class="drop__hint">Columnas: Fecha, Descripción, Referencia y Cargo/Abono (o un solo Monto con signo).</span>
+          <span class="drop__status" id="csvStatus">Arrastra o elige el archivo</span>
+        </label>
+        <div class="demo__settings">
+          <label>RFC de la empresa<input id="rfc" autocomplete="off" spellcheck="false" placeholder="Se detecta solo" /></label>
+          <label>Tolerancia ($)<input id="tolerance" type="number" value="1" min="0" step="0.01" inputmode="decimal" /></label>
+          <button type="button" class="btn btn--primary" id="run" disabled>Conciliar</button>
+        </div>
+        <div class="demo__errors" id="errors" role="alert" hidden></div>
+      </section>
+
+      <section class="demo__results" id="results" hidden>
+        <p class="demo__sample-note" id="sampleNote" hidden>Datos ficticios de ejemplo: empresas, RFC y montos inventados.</p>
+        <div class="kpis" id="kpis"></div>
+        <div class="demo__toolbar">
+          <div class="tabs" role="tablist" id="tabs"></div>
+          <button type="button" class="btn btn--ghost btn--sm" id="export">Exportar CSV</button>
+        </div>
+        <div class="table-wrap" id="table" role="tabpanel"></div>
+      </section>
+
+      <section class="demo__cta">
+        <h2>¿Lo quieres con <em>tus datos reales?</em></h2>
+        <p class="section__lead">Conectamos tu banco, el SAT y tu ERP para que la conciliación y las pólizas corran solas cada día.</p>
+        <a class="btn btn--primary" href="mailto:contacto@trentosolutions.com?subject=Demo%20de%20conciliaci%C3%B3n">contacto@trentosolutions.com</a>
+      </section>
+
+      <p class="demo__note">Demo con fines ilustrativos. Las pólizas son borradores con el código agrupador del SAT; valida con tu contador antes de registrarlas.</p>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span>© 2026 Trento Solutions S.A.S. · Ciudad de México</span>
+      <a href="/aviso-privacidad.html">Aviso de Privacidad</a>
+    </div>
+  </footer>
+</body>
+</html>
