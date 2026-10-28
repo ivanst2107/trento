@@ -13,62 +13,6 @@ const signed = (m) => `<span class="amt amt--${m.tipo}">${m.tipo === 'cargo' ? '
 
 const state = { xmlFiles: [], csvText: '', isSample: false, result: null, tab: 'matches' };
 
-// ---------- File loading ----------
-async function readXmlFiles(fileList) {
-  const out = [];
-  for (const f of fileList) {
-    if (/\.zip$/i.test(f.name)) {
-      const { default: JSZip } = await import('jszip');
-      const zip = await JSZip.loadAsync(f);
-      for (const entry of Object.values(zip.files)) {
-        if (!entry.dir && /\.xml$/i.test(entry.name)) out.push({ name: entry.name, xml: await entry.async('string') });
-      }
-    } else if (/\.xml$/i.test(f.name)) {
-      out.push({ name: f.name, xml: await f.text() });
-    }
-  }
-  return out;
-}
-
-// Mexican banks often export Latin-1; fall back when the file is not valid UTF-8.
-async function readText(file) {
-  const buf = await file.arrayBuffer();
-  try {
-    return new TextDecoder('utf-8', { fatal: true }).decode(buf);
-  } catch {
-    return new TextDecoder('windows-1252').decode(buf);
-  }
-}
-
-async function setXml(files) {
-  state.xmlFiles = await readXmlFiles(files);
-  state.isSample = false;
-  $('xmlStatus').textContent = state.xmlFiles.length ? `${state.xmlFiles.length} XML cargados` : 'No se encontraron XML';
-  $('dropXml').classList.toggle('is-loaded', state.xmlFiles.length > 0);
-  updateRunButton();
-}
-
-async function setCsv(file) {
-  state.csvText = file ? await readText(file) : '';
-  state.isSample = false;
-  $('csvStatus').textContent = file ? file.name : 'Arrastra o elige el archivo';
-  $('dropCsv').classList.toggle('is-loaded', !!file);
-  updateRunButton();
-}
-
-const updateRunButton = () => { $('run').disabled = !(state.xmlFiles.length && state.csvText); };
-
-function wireDrop(zone, input, onFiles) {
-  input.addEventListener('change', () => onFiles(input.files));
-  zone.addEventListener('dragover', (e) => { e.preventDefault(); zone.classList.add('is-over'); });
-  zone.addEventListener('dragleave', () => zone.classList.remove('is-over'));
-  zone.addEventListener('drop', (e) => {
-    e.preventDefault();
-    zone.classList.remove('is-over');
-    onFiles(e.dataTransfer.files);
-  });
-}
-
 // ---------- Reconciliation ----------
 function showErrors(list) {
   const box = $('errors');
@@ -102,10 +46,7 @@ function run() {
   }
   showErrors(errors);
 
-  const detected = detectCompanyRfc(cfdis);
-  $('rfc').placeholder = detected;
-  const tolerance = Math.max(0, Number($('tolerance').value) || 0);
-  state.result = reconcile({ cfdis, movements: bank.movements, companyRfc: $('rfc').value.trim() || detected, options: { tolerance } });
+  state.result = reconcile({ cfdis, movements: bank.movements, companyRfc: detectCompanyRfc(cfdis), options: { tolerance: 1 } });
   render();
 }
 
@@ -241,32 +182,12 @@ function runSample() {
   state.csvText = sample.csv;
   state.isSample = true;
   state.tab = 'matches';
-  $('xmlStatus').textContent = `${sample.files.length} XML de ejemplo`;
-  $('csvStatus').textContent = 'estado_de_cuenta_ejemplo.csv';
-  $('dropXml').classList.add('is-loaded');
-  $('dropCsv').classList.add('is-loaded');
-  $('rfc').value = '';
-  updateRunButton();
   run();
   $('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-async function downloadSample() {
-  const { default: JSZip } = await import('jszip');
-  const sample = generateSample();
-  const zip = new JSZip();
-  for (const f of sample.files) zip.file(`cfdi/${f.name}`, f.xml);
-  zip.file('estado_de_cuenta_ejemplo.csv', sample.csv);
-  zip.file('LEEME.txt', 'Datos ficticios para la demo de Trento Solutions (trentosolutions.com/demo).\r\nEmpresas, RFC, UUID y montos son inventados.\r\n');
-  download('trento_demo_ejemplo.zip', await zip.generateAsync({ type: 'blob' }));
-}
-
 // ---------- Wiring ----------
-wireDrop($('dropXml'), $('xmlInput'), setXml);
-wireDrop($('dropCsv'), $('csvInput'), (files) => setCsv(files[0]));
-$('run').addEventListener('click', run);
 $('runSample').addEventListener('click', runSample);
-$('downloadSample').addEventListener('click', downloadSample);
 $('export').addEventListener('click', exportCsv);
 $('tabs').addEventListener('click', (e) => {
   const b = e.target.closest('button[data-tab]');
