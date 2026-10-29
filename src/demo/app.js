@@ -3,6 +3,7 @@ import './demo.css';
 import { parseCfdi } from './cfdi.js';
 import { parseBankCsv } from './bank.js';
 import { reconcile, detectCompanyRfc, cfdiLabel } from './reconcile.js';
+import { parseEfosCsv, checkEfos } from './efos.js';
 import { generateSample } from './sample.js';
 
 const $ = (id) => document.getElementById(id);
@@ -11,7 +12,7 @@ const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (ch) => ({ '&': '&amp;', '
 const dmy = (iso) => `${iso.slice(8, 10)}/${iso.slice(5, 7)}/${iso.slice(0, 4)}`;
 const signed = (m) => `<span class="amt amt--${m.tipo}">${m.tipo === 'cargo' ? '−' : '+'}${mxn.format(m.monto)}</span>`;
 
-const state = { xmlFiles: [], csvText: '', isSample: false, result: null, tab: 'matches' };
+const state = { xmlFiles: [], csvText: '', efosCsv: '', isSample: false, result: null, tab: 'matches' };
 
 // ---------- Reconciliation ----------
 function showErrors(list) {
@@ -46,7 +47,10 @@ function run() {
   }
   showErrors(errors);
 
-  state.result = reconcile({ cfdis, movements: bank.movements, companyRfc: detectCompanyRfc(cfdis), options: { tolerance: 1 } });
+  const companyRfc = detectCompanyRfc(cfdis);
+  state.result = reconcile({ cfdis, movements: bank.movements, companyRfc, options: { tolerance: 1 } });
+  const paid = new Set(state.result.matches.flatMap((m) => m.items.map((it) => it.cfdi.uuid)));
+  state.result.efos = checkEfos({ cfdis, companyRfc, list: parseEfosCsv(state.efosCsv), paid });
   render();
 }
 
@@ -56,6 +60,7 @@ const TABS = {
   movs: { label: 'Movimientos sin CFDI', count: (r) => r.unmatchedMovements.length },
   cfdis: { label: 'CFDI sin movimiento', count: (r) => r.unmatchedItems.length },
   entries: { label: 'Pólizas', count: (r) => r.entries.length },
+  efos: { label: 'Lista 69-B', count: (r) => r.efos.hits.length },
 };
 
 function render() {
@@ -69,6 +74,7 @@ function render() {
     ['CFDI por cobrar o pagar', s.cfdisPendientes, `de ${s.cfdis} CFDI cargados`],
     ['Para revisar', s.conAvisos, 'conciliados con avisos'],
     ['Pólizas en borrador', s.polizas, `RFC ${r.rfc}`],
+    ['Proveedores en lista 69-B', r.efos.proveedores, `IVA en riesgo ${mxn.format(r.efos.ivaEnRiesgo)}`],
   ].map(([k, v, sub]) => `<div class="kpi"><span class="kpi__label">${k}</span><span class="kpi__value">${v}</span><span class="kpi__sub">${esc(sub)}</span></div>`).join('');
 
   $('tabs').innerHTML = Object.entries(TABS).map(([key, t]) =>
@@ -118,6 +124,18 @@ const VIEWS = {
       }),
     ],
   }),
+  efos: (r) => ({
+    caption: 'Facturas recibidas de proveedores que el SAT señala por operaciones simuladas (art. 69-B CFF). En la demo la lista también es ficticia; en el servicio se compara contra el listado oficial del SAT.',
+    head: ['Riesgo', 'Proveedor', 'Situación SAT', 'CFDI', 'IVA en riesgo', 'Qué hacer'],
+    rows: r.efos.hits.map((h) => [
+      `<span class="pill pill--${h.riesgo}">${h.riesgo}</span>`,
+      `<strong>${esc(h.cfdi.emisor.nombre)}</strong><small>${esc(h.cfdi.emisor.rfc)}</small>`,
+      esc(h.situacion),
+      `<strong>${esc(cfdiLabel(h.cfdi))}</strong><small>${dmy(h.cfdi.fecha)} · ${mxn.format(h.cfdi.total)} · ${h.pagado ? 'pagada' : 'sin pagar'}</small>`,
+      mxn.format(h.cfdi.iva),
+      `${esc(h.accion)}${h.pagado ? '' : '<small>Sin pagar: aclarar con el proveedor antes de pagar.</small>'}`,
+    ]),
+  }),
   entries: (r) => ({
     head: ['Póliza', 'Cuenta', 'Nombre', 'Cargo', 'Abono'],
     rows: r.entries.flatMap((e) => [
@@ -129,12 +147,12 @@ const VIEWS = {
 
 function renderTable() {
   for (const b of $('tabs').querySelectorAll('button')) b.setAttribute('aria-selected', String(b.dataset.tab === state.tab));
-  const { head, rows } = VIEWS[state.tab](state.result);
+  const { head, rows, caption } = VIEWS[state.tab](state.result);
   const cell = (c) => (typeof c === 'object' ? `<td colspan="${c.colspan}">${c.html}</td>` : `<td>${c}</td>`);
   const body = rows.length
     ? rows.map((row) => (Array.isArray(row) ? `<tr>${row.map(cell).join('')}</tr>` : `<tr class="${row.cls}">${row.cells.map(cell).join('')}</tr>`)).join('')
     : `<tr><td colspan="${head.length}" class="empty">Nada por aquí.</td></tr>`;
-  $('table').innerHTML = `<table class="tbl tbl--${state.tab}"><thead><tr>${head.map((h) => `<th>${h}</th>`).join('')}</tr></thead><tbody>${body}</tbody></table>`;
+  $('table').innerHTML = `<table class="tbl tbl--${state.tab}">${caption ? `<caption>${esc(caption)}</caption>` : ''}<thead><tr>${head.map((h) => `<th>${h}</th>`).join('')}</tr></thead><tbody>${body}</tbody></table>`;
 }
 
 // ---------- Export ----------
@@ -154,6 +172,10 @@ const EXPORTS = {
     ['Fecha', 'CFDI', 'UUID', 'RFC contraparte', 'Contraparte', 'Total', 'Estado'],
     ...r.unmatchedItems.map((u) => [u.item.fecha, u.item.label, u.item.cfdi.uuid, u.item.counterparty.rfc, u.item.counterparty.nombre, u.item.amount, u.estado]),
     ...r.excluded.map((e) => [e.cfdi.fecha, cfdiLabel(e.cfdi), e.cfdi.uuid, '', '', e.cfdi.total, e.motivo]),
+  ],
+  efos: (r) => [
+    ['Riesgo', 'RFC proveedor', 'Proveedor', 'Situacion SAT', 'CFDI', 'UUID', 'Fecha', 'Total', 'IVA', 'Pagada', 'Que hacer'],
+    ...r.efos.hits.map((h) => [h.riesgo, h.cfdi.emisor.rfc, h.cfdi.emisor.nombre, h.situacion, cfdiLabel(h.cfdi), h.cfdi.uuid, h.cfdi.fecha, h.cfdi.total, h.cfdi.iva, h.pagado ? 'Si' : 'No', h.accion]),
   ],
   entries: (r) => [
     ['Poliza', 'Fecha', 'Concepto', 'Cuenta', 'Nombre', 'Cargo', 'Abono'],
@@ -180,6 +202,7 @@ function runSample() {
   const sample = generateSample();
   state.xmlFiles = sample.files;
   state.csvText = sample.csv;
+  state.efosCsv = sample.efosCsv;
   state.isSample = true;
   state.tab = 'matches';
   run();

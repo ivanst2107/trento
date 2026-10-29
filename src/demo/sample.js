@@ -23,6 +23,23 @@ const SUPPLIERS = [
 
 const PAC_TEST_RFC = 'AAA010101AAA';
 
+// Fictitious extract of the SAT art. 69-B list in the layout of the official CSV. Two sample
+// suppliers are on it (one definitive, one presumed); one was cleared (desvirtuado).
+const EFOS_ROWS = [
+  ['GFS170316KD2', 'GRUPO FICTICIO DE SERVICIOS DEMO, S.A. DE C.V.', 'Definitivo'],
+  ['MQE150812TY6', 'MAQUINARIA Y EQUIPO EJEMPLO, S.A. DE C.V.', 'Definitivo'],
+  ['CIS180904PX5', 'COMERCIAL INVENTADA DEL SUR, S.A. DE C.V.', 'Sentencia Favorable'],
+  ['OSF190122RM8', 'OPERADORA SIMULADA FICTICIA, S.C.', 'Presunto'],
+  ['PEM200229BV7', 'PAPELERIA EJEMPLO MX, S.A. DE C.V.', 'Presunto'],
+  ['TLD181120HG5', 'TRANSPORTES LOGISTICA DEMO, S.A. DE C.V.', 'Desvirtuado'],
+];
+const EFOS_CSV = [
+  '"Listado ficticio para la demo de Trento Solutions; no son datos del SAT.",,,',
+  'Listado completo de contribuyentes (Artículo 69-B del CFF),,,',
+  'No,RFC,Nombre del Contribuyente,Situación del contribuyente',
+  ...EFOS_ROWS.map(([rfc, nombre, situacion], i) => `${i + 1},${rfc},"${nombre}",${situacion}`),
+].join('\n');
+
 function mulberry32(seed) {
   return () => {
     seed |= 0; seed = (seed + 0x6d2b79f5) | 0;
@@ -213,5 +230,5 @@ export function generateSample(seed = 2026) {
     rows.push([fmtDateMx(m.fecha), `"${m.desc}"`, m.ref, m.monto < 0 ? money(-m.monto) : '', m.monto > 0 ? money(m.monto) : '', money(saldo)].join(','));
   }
 
-  return { companyRfc: me.rfc, files, csv: `${rows.join('\n')}\n` };
+  return { companyRfc: me.rfc, files, csv: `${rows.join('\n')}\n`, efosCsv: `${EFOS_CSV}\n` };
 }
