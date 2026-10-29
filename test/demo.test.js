@@ -5,6 +5,7 @@ import { parseCfdi } from '../src/demo/cfdi.js';
 import { parseBankCsv, parseAmount, parseDate } from '../src/demo/bank.js';
 import { reconcile, detectCompanyRfc } from '../src/demo/reconcile.js';
 import { generateSample, SAMPLE_COMPANY } from '../src/demo/sample.js';
+import { parseEfosCsv, checkEfos } from '../src/demo/efos.js';
 
 function runSample() {
   const sample = generateSample();
@@ -96,4 +97,36 @@ test('bank parser handles other layouts', () => {
   assert.equal(parseAmount('(150.00)'), -150);
   assert.equal(parseDate('7-1-2026'), '2026-01-07');
   assert.throws(() => parseBankCsv('a,b\n1,2\n'), /Fecha/);
+});
+
+test('flags received CFDI from suppliers on the 69-B list', () => {
+  const { sample, cfdis, result } = runSample();
+  const list = parseEfosCsv(sample.efosCsv);
+  assert.equal(list.size, 6);
+  assert.equal(list.get('MQE150812TY6').situacion, 'Definitivo');
+
+  const paid = new Set(result.matches.flatMap((m) => m.items.map((it) => it.cfdi.uuid)));
+  const efos = checkEfos({ cfdis, companyRfc: SAMPLE_COMPANY.rfc, list, paid });
+  assert.deepEqual(efos.hits.map((h) => [h.cfdi.emisor.rfc, h.riesgo, h.pagado]), [
+    ['MQE150812TY6', 'alto', true],
+    ['MQE150812TY6', 'alto', false],
+    ['PEM200229BV7', 'medio', true],
+  ]);
+  assert.equal(efos.proveedores, 2);
+  const iva = efos.hits.reduce((s, h) => s + h.cfdi.iva, 0);
+  assert.equal(efos.ivaEnRiesgo, Math.round(iva * 100) / 100);
+  // Cleared suppliers (desvirtuado) are not flagged.
+  assert.ok(!efos.hits.some((h) => h.cfdi.emisor.rfc === 'TLD181120HG5'));
+});
+
+test('69-B parser reads the official layout', () => {
+  const csv = '"Información actualizada al 31 de diciembre de 2025; los listados, son públicos",,,,\r\n'
+    + 'Listado completo de contribuyentes (Artículo 69-B del CFF),,,,\r\n'
+    + 'No,RFC,Nombre del Contribuyente,Situación del contribuyente,Número y fecha de oficio\r\n'
+    + '1,aaa010101aa1,"EMPRESA ""UNO"", S.A. DE C.V.",Sentencia Favorable,500-05\r\n'
+    + '2,BBB020202BB2,"DOS\nS.C.",Definitivo,500-06\r\n';
+  const list = parseEfosCsv(csv);
+  assert.deepEqual(list.get('AAA010101AA1'), { nombre: 'EMPRESA "UNO", S.A. DE C.V.', situacion: 'Sentencia Favorable' });
+  assert.equal(list.get('BBB020202BB2').situacion, 'Definitivo');
+  assert.throws(() => parseEfosCsv('a,b\n1,2\n'), /RFC/);
 });

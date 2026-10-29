@@ -48,6 +48,8 @@ button.btn:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
 .tbl--entries td:nth-child(n + 4), .tbl--entries th:nth-child(n + 4) { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .tbl--entries tr.entry-head td { background: rgba(255, 255, 255, 0.025); color: var(--ink); text-align: left; }
 .tbl--entries td code { font: 13px var(--mono); color: var(--mint); }
+.tbl caption { caption-side: top; text-align: left; padding: 14px 16px; color: var(--muted); font-size: 13px; line-height: 1.5; border-bottom: 1px solid var(--line); }
+.tbl--efos td:last-child { min-width: 260px; }
 .tbl .empty { text-align: center; color: var(--faint); padding: 40px; }
 
 .amt { font-variant-numeric: tabular-nums; white-space: nowrap; }
@@ -57,6 +59,8 @@ button.btn:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
 .pill--alta { color: var(--mint); background: rgba(92, 242, 197, 0.1); }
 .pill--media { color: var(--violet); background: rgba(139, 123, 255, 0.12); }
 .pill--baja { color: var(--amber); background: rgba(242, 194, 92, 0.12); }
+.pill--alto { color: var(--rose); background: rgba(255, 138, 154, 0.12); }
+.pill--medio { color: var(--amber); background: rgba(242, 194, 92, 0.12); }
 .warn { list-style: none; display: grid; gap: 4px; color: var(--amber); font-size: 13px; }
 .warn li::before { content: '▲ '; font-size: 9px; vertical-align: 2px; }
 .ok { color: var(--faint); font-size: 13px; }
