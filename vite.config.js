@@ -7,11 +7,10 @@ export default defineConfig({
   // Served at the custom domain root: https://trentosolutions.com/
   base: '/',
   build: {
-    // three.js is lazy-loaded in its own chunk after the page paints.
-    chunkSizeWarningLimit: 600,
     rollupOptions: {
       input: {
         main: root('./index.html'),
+        about: root('./nosotros.html'),
         privacy: root('./aviso-privacidad.html'),
         demo: root('./demo/index.html'),
       },

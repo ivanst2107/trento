@@ -1,12 +1,13 @@
 # Trento Solutions — sitio web
 
-Sitio de una página con escena 3D (Three.js), animaciones de scroll (GSAP + Lenis) y versión en español/inglés.
+Sitio estático (Vite) con inicio, página Nosotros, demo y aviso de privacidad, en español/inglés. Estilo cálido: fondo crema, tinta índigo y un color por servicio (verde = automatización, coral = asesorías, miel = acompañamiento).
 
 ## Editar textos
 
-- **Español:** directamente en `index.html` (cada texto traducible tiene un atributo `data-i18n`).
+- **Español:** directamente en `index.html` y `nosotros.html` (cada texto traducible tiene un atributo `data-i18n`).
+- **Borradores:** las secciones marcadas con la etiqueta `Borrador` (`<span class="draft">`) esperan el texto definitivo; quita la etiqueta al aprobarlas.
+- **Calendario:** pega la liga de agenda en `BOOKING_URL` (`src/main.js`). El formulario de contacto arma un correo a contacto@.
 - **Inglés:** en `src/i18n.js`, usando la misma clave `data-i18n`.
-- **Terminal animada** (tarjeta de Python): arreglo `SCRIPT` en `src/main.js`.
 - **Aviso de privacidad:** `aviso-privacidad.html` (solo español).
 
 ## Desarrollo local
@@ -28,7 +29,6 @@ En **Settings → Pages → Build and deployment → Source** debe estar selecci
 
 | Archivo | Qué hace |
 |---|---|
-| `src/scene.js` | Escena 3D: tarjetas que pasan de caos → hélice → cuadrícula al hacer scroll |
-| `src/main.js` | Scroll suave, sección fija de "Del caos al control", animaciones, efectos de cursor |
+| `src/main.js` | Menú, aparición al hacer scroll, formulario de contacto y liga de agenda |
 | `src/i18n.js` | Textos en inglés y cambio de idioma |
 | `src/style.css` | Estilos |

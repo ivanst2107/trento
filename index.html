@@ -1,40 +1,34 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-en-title="Trento Solutions | Automation, advisory and guidance" data-en-desc="We automate up to 90% of your finance and accounting processes. The other 10% is yours: we help, advise and guide you step by step.">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Trento Solutions | Automatización Financiera y Contable</title>
-  <meta name="description" content="Automatizamos los procesos financieros y contables de empresas medianas: conciliaciones, cierre de mes, cuentas por pagar, integración ERP y reportes ejecutivos." />
-  <meta name="theme-color" content="#05060a" />
-  <meta property="og:title" content="Trento Solutions | Automatización Financiera y Contable" />
-  <meta property="og:description" content="Tu contabilidad, en piloto automático. Automatización financiera para empresas medianas." />
+  <title>Trento Solutions | Automatización, asesorías y acompañamiento</title>
+  <meta name="description" content="Automatizamos hasta el 90% de tus procesos financieros y contables. El otro 10% es tuyo: te ayudamos, te asesoramos y te acompañamos paso a paso." />
+  <meta name="theme-color" content="#fff7ec" />
+  <meta property="og:title" content="Trento Solutions | Automatización, asesorías y acompañamiento" />
+  <meta property="og:description" content="Automatizamos hasta el 90% de tus procesos financieros y contables. El otro 10% es tuyo: te ayudamos, te asesoramos y te acompañamos paso a paso." />
   <meta property="og:type" content="website" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script>document.documentElement.classList.add('js');</script>
   <script type="module" src="/src/main.js"></script>
 </head>
 <body>
-  <canvas id="webgl" aria-hidden="true"></canvas>
-  <div class="grain" aria-hidden="true"></div>
-  <div class="cursor-glow" aria-hidden="true"></div>
-
-  <!-- ================= NAV ================= -->
   <header class="nav" id="nav">
     <div class="container nav__inner">
-      <a href="#top" class="brand" aria-label="Trento Solutions">
-        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4.5 26 10.25v11.5L16 27.5 6 21.75v-11.5Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M11.5 13.5h9M16 13.5v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-        <span>Trento</span>
-      </a>
+      <a href="/" class="brand" aria-label="Trento Solutions"><svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4.5 26 10.25v11.5L16 27.5 6 21.75v-11.5Z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M11.5 13.5h9M16 13.5v8" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg><span>Trento</span></a>
       <nav class="nav__links" id="navLinks">
         <a href="#servicios" data-i18n="nav.services">Servicios</a>
-        <a href="#proceso" data-i18n="nav.process">Cómo trabajamos</a>
-        <a href="#equipo" data-i18n="nav.team">Equipo</a>
+        <a href="#beneficios" data-i18n="nav.benefits">Beneficios</a>
+        <a href="/nosotros.html" data-i18n="nav.about">Nosotros</a>
         <a href="/demo/" data-i18n="nav.demo">Demo</a>
         <a href="#contacto" data-i18n="nav.contact">Contacto</a>
       </nav>
       <div class="nav__actions">
+        <a href="#contacto" class="btn btn--primary btn--sm nav__cta" data-i18n="nav.cta">Agenda una llamada</a>
         <div class="lang" role="group" aria-label="Idioma / Language">
           <button type="button" data-lang="es" aria-pressed="true">ES</button>
           <button type="button" data-lang="en" aria-pressed="false">EN</button>
@@ -45,209 +39,204 @@
   </header>
 
   <main id="top">
-    <!-- ================= HERO ================= -->
+    <!-- ============ INICIO: el logo manda ============ -->
     <section class="hero">
-      <div class="container hero__inner">
-        <p class="eyebrow" data-anim><span class="dot"></span><span data-i18n="hero.eyebrow">Automatización financiera · Empresas medianas</span></p>
-        <h1 class="hero__title" data-anim data-i18n="hero.title">Tu contabilidad,<br /><em>en piloto automático.</em></h1>
-        <p class="hero__lead" data-anim data-i18n="hero.lead">Automatizamos los procesos financieros y contables de empresas medianas: conciliaciones, cierre de mes, cuentas por pagar y reportes que corren solos. Para que tu equipo deje de capturar y empiece a decidir.</p>
-        <div class="hero__ctas" data-anim>
-          <a href="#servicios" class="btn btn--primary magnetic"><span data-i18n="hero.cta1">Ver qué automatizamos</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          <a href="#proceso" class="btn btn--ghost magnetic" data-i18n="hero.cta2">Cómo trabajamos</a>
-        </div>
-      </div>
-
-      <div class="hero__chips" aria-hidden="true">
-        <div class="chip chip--a" data-depth="0.6"><i class="ok"></i><span data-i18n="chip.a">Conciliación bancaria · automatizada</span></div>
-        <div class="chip chip--b" data-depth="1"><i class="ok"></i><span data-i18n="chip.b">CFDI validado contra orden de compra</span></div>
-        <div class="chip chip--c" data-depth="0.4"><i class="run"></i><span data-i18n="chip.c">Póliza contable generada</span></div>
-      </div>
-
-      <div class="scroll-hint" aria-hidden="true"><span data-i18n="hero.scroll">Desliza</span><i></i></div>
-    </section>
-
-    <!-- ================= MARQUEE ================= -->
-    <div class="marquee" aria-label="Procesos que automatizamos">
-      <div class="marquee__track">
-        <ul data-i18n="marquee">
-          <li>Conciliación bancaria</li><li>Cuentas por pagar</li><li>Cuentas por cobrar</li><li>Validación de CFDI</li><li>Cierre de mes</li><li>Pólizas contables</li><li>Flujo de efectivo</li><li>Integración ERP</li><li>Tableros ejecutivos</li><li>Reportes de gestión</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- ================= TRANSFORMATION (pinned, drives 3D) ================= -->
-    <section class="transform" id="transform">
-      <div class="transform__stage">
-        <div class="container transform__inner">
-          <div class="transform__head">
-            <p class="kicker" data-i18n="tf.kicker">La transformación</p>
-            <h2 class="h2" data-i18n="tf.title">Del caos <em>al control.</em></h2>
+      <div class="container">
+        <div class="hero__inner">
+          <div>
+            <div class="logo-lockup" aria-label="Trento Solutions">
+              <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4.5 26 10.25v11.5L16 27.5 6 21.75v-11.5Z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M11.5 13.5h9M16 13.5v8" stroke="#232a63" stroke-width="2.4" stroke-linecap="round"/></svg>
+              <div class="logo-lockup__name">Trento<span class="logo-lockup__sub">Solutions</span></div>
+            </div>
+            <h1 class="hero__title" data-i18n="hero.title">Automatizamos hasta el 90% de tus procesos. <em>El otro 10% es tuyo.</em></h1>
+            <p class="hero__lead" data-i18n="hero.lead">Ese 10% es la revisión y el criterio de cada líder, y eso no se reemplaza. Te acompañamos paso a paso para que lo repetitivo de tus finanzas y tu contabilidad corra solo, y tú te dediques a decidir.</p>
+            <div class="hero__ctas">
+              <a href="#contacto" class="btn btn--primary"><span data-i18n="hero.cta1">Agenda una llamada</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+              <a href="/nosotros.html" class="btn btn--ghost" data-i18n="hero.cta2">Conoce nuestra historia</a>
+            </div>
           </div>
-          <ol class="steps">
-            <li class="step is-active">
-              <span class="step__num">01</span>
-              <h3 data-i18n="tf.s1.t">Hoy: todo es manual</h3>
-              <p data-i18n="tf.s1.d">Excel, correos y captura a mano. La información vive dispersa entre bancos, ERP y hojas de cálculo, y el cierre depende de que nadie se equivoque.</p>
-            </li>
-            <li class="step">
-              <span class="step__num">02</span>
-              <h3 data-i18n="tf.s2.t">Conectamos tus datos</h3>
-              <p data-i18n="tf.s2.d">Integramos bancos, ERP, CFDI y tus archivos en un solo flujo, con reglas contables claras y trazables.</p>
-            </li>
-            <li class="step">
-              <span class="step__num">03</span>
-              <h3 data-i18n="tf.s3.t">Operación automatizada</h3>
-              <p data-i18n="tf.s3.d">Bots y scripts hacen el trabajo repetitivo. Tu equipo solo revisa excepciones y decide con información al día.</p>
-            </li>
-          </ol>
-          <div class="progress" aria-hidden="true"><i></i></div>
+          <svg class="hero__art peaks" viewBox="0 0 560 450" role="img" aria-label="Tres cumbres de colores y un camino que sube paso a paso">
+          <circle class="float" cx="452" cy="92" r="44" fill="#ffd98a"/>
+          <g stroke-linejoin="round" stroke-width="26">
+            <polygon points="176,396 322,104 468,396" fill="#f0644b" stroke="#f0644b"/>
+            <polygon points="44,396 186,196 328,396" fill="#0e9384" stroke="#0e9384"/>
+            <polygon points="330,396 436,236 542,396" fill="#f6b535" stroke="#f6b535"/>
+          </g>
+          <path d="M150 404 C205 372 262 352 258 318 C254 286 322 268 312 228 C304 196 330 150 322 112" fill="none" stroke="#fff7ec" stroke-width="5" stroke-linecap="round" stroke-dasharray="2 13"/>
+          <g fill="#fff7ec"><circle cx="258" cy="318" r="9"/><circle cx="312" cy="228" r="9"/><circle cx="322" cy="112" r="9"/></g>
+          <path d="M322 108V62" stroke="#232a63" stroke-width="5" stroke-linecap="round"/>
+          <path d="M324 62h34l-9 11 9 11h-34Z" fill="#232a63"/>
+          <rect x="18" y="404" width="524" height="20" rx="10" fill="#ffe2bf"/>
+        </svg>
+        </div>
+
+        <div class="verbs">
+          <div class="verb verb--1 reveal"><h3 data-i18n="vb.1.t">Te ayudamos</h3><p data-i18n="vb.1.d">a quitarte de encima el trabajo repetitivo.</p></div>
+          <div class="verb verb--2 reveal" style="--d:.08s"><h3 data-i18n="vb.2.t">Te asesoramos</h3><p data-i18n="vb.2.d">para que decidas con números claros.</p></div>
+          <div class="verb verb--3 reveal" style="--d:.16s"><h3 data-i18n="vb.3.t">Te eficientamos</h3><p data-i18n="vb.3.d">área por área, a tu ritmo.</p></div>
         </div>
       </div>
     </section>
 
-    <!-- ================= SERVICES ================= -->
-    <section class="section" id="servicios">
+    <!-- ============ 1 · Tu día a día ============ -->
+    <section class="section section--white" id="historia">
       <div class="container">
         <div class="section__head reveal">
-          <p class="kicker" data-i18n="sv.kicker">Servicios</p>
-          <h2 class="h2" data-i18n="sv.title">Lo que <em>automatizamos.</em></h2>
-          <p class="section__lead" data-i18n="sv.lead">Nuestro foco es eliminar el trabajo manual de finanzas y contabilidad. Diseñamos, construimos y mantenemos la automatización de punta a punta.</p>
+          <p class="kicker"><b>1</b><span data-i18n="c1.kicker">Tu día a día</span></p>
+          <h2 class="h2" data-i18n="c1.title">Seguro <em>te suena.</em></h2>
         </div>
-
-        <div class="cards">
-          <article class="card card--wide tilt reveal">
-            <div class="card__body">
-              <span class="card__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 9-3 3 3 3M16 9l3 3-3 3M13.5 6l-3 12"/></svg></span>
-              <h3 data-i18n="sv.c1.t">Automatización con Python &amp; RPA</h3>
-              <p data-i18n="sv.c1.d">Bots que concilian bancos, cruzan CFDI contra órdenes de compra y facturas, generan pólizas y eliminan la captura manual.</p>
-            </div>
-            <div class="terminal" aria-hidden="true">
-              <div class="terminal__bar"><i></i><i></i><i></i><span>reconcile.py</span></div>
-              <pre class="terminal__body" id="terminal"></pre>
-            </div>
-          </article>
-
-          <article class="card tilt reveal">
-            <span class="card__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="6" height="6" rx="1.5"/><rect x="14" y="4" width="6" height="6" rx="1.5"/><rect x="4" y="14" width="6" height="6" rx="1.5"/><rect x="14" y="14" width="6" height="6" rx="1.5"/></svg></span>
-            <h3 data-i18n="sv.c2.t">Integración ERP · Odoo &amp; SAP</h3>
-            <p data-i18n="sv.c2.d">Implementamos y conectamos tu ERP con bancos y sistemas externos. Catálogo de cuentas y centros de costo diseñados para ver la rentabilidad real de cada unidad.</p>
-          </article>
-
-          <article class="card tilt reveal">
-            <span class="card__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span>
-            <h3 data-i18n="sv.c3.t">BI &amp; tableros ejecutivos</h3>
-            <p data-i18n="sv.c3.d">Tableros conectados directo a tus datos para seguir liquidez, cartera, gastos y márgenes sin esperar al cierre.</p>
-            <div class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-          </article>
-
-          <article class="card card--wide tilt reveal">
-            <div class="card__body">
-              <span class="card__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 11l3 3 8-8"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg></span>
-              <h3 data-i18n="sv.c4.t">Cierre contable &amp; control</h3>
-              <p data-i18n="sv.c4.d">Rediseñamos el cierre de mes con checklists, flujos de aprobación y controles automáticos para cerrar más rápido y con menos errores.</p>
-            </div>
-            <ul class="checklist" aria-hidden="true">
-              <li data-i18n="sv.c4.l1">Conciliaciones bancarias</li>
-              <li data-i18n="sv.c4.l2">Provisiones y pólizas</li>
-              <li data-i18n="sv.c4.l3">Revisión de excepciones</li>
-              <li data-i18n="sv.c4.l4">Aprobación y reporte</li>
-            </ul>
-          </article>
+        <div class="trio">
+          <article class="pain reveal"><span class="pain__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5Z"/></svg></span><h3 data-i18n="c1.a.t">Cierres que terminan de noche</h3><p data-i18n="c1.a.d">Cada fin de mes tu equipo se queda tarde conciliando y capturando a mano.</p></article>
+          <article class="pain reveal" style="--d:.08s"><span class="pain__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4h8l4 4v10a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/><path d="M4 8v12a2 2 0 0 0 2 2h9"/></svg></span><h3 data-i18n="c1.b.t">La información en mil archivos</h3><p data-i18n="c1.b.d">Bancos, facturas, sistema y hojas de Excel que nadie termina de cuadrar.</p></article>
+          <article class="pain reveal" style="--d:.16s"><span class="pain__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l-3 2"/></svg></span><h3 data-i18n="c1.c.t">Decisiones con números de ayer</h3><p data-i18n="c1.c.d">Cuando el reporte por fin está listo, ya es tarde para actuar.</p></article>
         </div>
+        <p class="closing reveal" data-i18n="c1.close">No es falta de talento: es exceso de trabajo manual. <em>Y tiene solución.</em></p>
+      </div>
+    </section>
 
-        <div class="advisory reveal">
-          <div>
-            <p class="kicker" data-i18n="ad.kicker">También</p>
-            <h3 class="h3" data-i18n="ad.title">Y cuando lo necesitas, <em>asesoría financiera.</em></h3>
+    <!-- ============ 2 · Una idea simple ============ -->
+    <section class="section">
+      <div class="container">
+        <div class="define">
+          <div class="reveal">
+            <p class="kicker"><b>2</b><span data-i18n="c2.kicker">Una idea simple</span></p>
+            <h2 class="h2" data-i18n="c2.title">¿Qué es <em>automatizar?</em></h2>
+            <p class="define__quote" data-i18n="c2.quote">Es enseñarle a la computadora las tareas que se repiten, para que tu equipo se dedique a lo que solo las personas saben hacer: <em>pensar, revisar y decidir.</em></p>
           </div>
-          <div>
-            <p data-i18n="ad.desc">Seguimos acompañando a direcciones de finanzas en planeación financiera, proyecciones de flujo de efectivo y controllership. Con los datos ya automatizados, el análisis llega antes y con más confianza.</p>
-            <ul class="tags">
-              <li>FP&amp;A</li>
-              <li data-i18n="ad.t2">Flujo de efectivo</li>
-              <li>Controllership</li>
-              <li data-i18n="ad.t4">Presupuestos</li>
-            </ul>
+          <div class="ratio reveal" style="--d:.1s">
+            <div class="ratio__bar" aria-hidden="true"><span class="r90">90%</span><span class="r10">10%</span></div>
+            <div class="ratio__legend">
+              <div><b data-i18n="c2.r90.t">Lo repetitivo</b><span data-i18n="c2.r90.d">Corre solo, todos los días.</span></div>
+              <div><b data-i18n="c2.r10.t">Tu criterio</b><span data-i18n="c2.r10.d">Tú revisas y decides.</span></div>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- ================= PROCESS ================= -->
-    <section class="section" id="proceso">
-      <div class="container process">
-        <div class="section__head process__head reveal">
-          <p class="kicker" data-i18n="pr.kicker">Método</p>
-          <h2 class="h2" data-i18n="pr.title">Cómo <em>trabajamos.</em></h2>
-          <p class="section__lead" data-i18n="pr.lead">Proyectos por etapas, con entregables visibles desde las primeras semanas.</p>
-        </div>
-        <ol class="timeline">
-          <li class="timeline__line" aria-hidden="true"><i></i></li>
-          <li class="tl reveal"><span class="tl__num">01</span><div><h3 data-i18n="pr.s1.t">Diagnóstico</h3><p data-i18n="pr.s1.d">Mapeamos tus procesos financieros y detectamos dónde se pierde el tiempo.</p></div></li>
-          <li class="tl reveal"><span class="tl__num">02</span><div><h3 data-i18n="pr.s2.t">Diseño</h3><p data-i18n="pr.s2.d">Definimos qué se automatiza, con qué herramientas y con qué controles.</p></div></li>
-          <li class="tl reveal"><span class="tl__num">03</span><div><h3 data-i18n="pr.s3.t">Construcción</h3><p data-i18n="pr.s3.d">Desarrollamos e integramos por etapas, con pruebas sobre tus datos reales.</p></div></li>
-          <li class="tl reveal"><span class="tl__num">04</span><div><h3 data-i18n="pr.s4.t">Operación</h3><p data-i18n="pr.s4.d">Monitoreamos, damos soporte y capacitamos a tu equipo para que la automatización perdure.</p></div></li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- ================= WHY ================= -->
-    <section class="section section--tight">
-      <div class="container why">
-        <div class="why__item reveal">
-          <h3 data-i18n="wy.1.t">Fundadores en cada proyecto</h3>
-          <p data-i18n="wy.1.d">Sin delegar a juniors. Quien diseña tu solución es quien la construye.</p>
-        </div>
-        <div class="why__item reveal">
-          <h3 data-i18n="wy.2.t">Finanzas + código</h3>
-          <p data-i18n="wy.2.d">Entendemos la contabilidad y escribimos el código. No hay traducción entre consultor y programador.</p>
-        </div>
-        <div class="why__item reveal">
-          <h3 data-i18n="wy.3.t">A la medida de empresas medianas</h3>
-          <p data-i18n="wy.3.d">Prácticas de grandes corporativos, sin la complejidad ni las licencias que no necesitas.</p>
+        <div class="trio">
+          <article class="num-card reveal"><span class="n">1</span><h3 data-i18n="c2.a.t">Lo repetitivo corre solo</h3><p data-i18n="c2.a.d">Conciliar, capturar y cruzar facturas: lo que hoy te toma días pasa en minutos.</p></article>
+          <article class="num-card reveal" style="--d:.08s"><span class="n">2</span><h3 data-i18n="c2.b.t">Tú revisas lo importante</h3><p data-i18n="c2.b.d">Solo te llega lo que no cuadra y lo que necesita tu visto bueno.</p></article>
+          <article class="num-card reveal" style="--d:.16s"><span class="n">3</span><h3 data-i18n="c2.c.t">Tu equipo recupera su tiempo</h3><p data-i18n="c2.c.d">Menos captura y más análisis. Nadie pierde su lugar: todos ganan tiempo.</p></article>
         </div>
       </div>
     </section>
 
-    <!-- ================= TEAM ================= -->
+    <!-- ============ 3 · Servicios ============ -->
+    <section class="section section--white" id="servicios">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="kicker"><b>3</b><span data-i18n="c3.kicker">Cómo te ayudamos</span></p>
+          <h2 class="h2" data-i18n="c3.title">Tres formas de <em>caminar contigo.</em></h2>
+          <p class="section__lead" data-i18n="c3.lead">Puedes empezar por la que necesites hoy. Juntas, te llevan hasta la cumbre.</p>
+        </div>
+        <div class="trio">
+          <article class="service service--auto reveal">
+            <span class="service__label" data-i18n="sv.a.label">Automatización</span>
+            <h3 data-i18n="sv.a.t">Lo repetitivo, resuelto.</h3>
+            <p data-i18n="sv.a.d">Construimos las herramientas que hacen el trabajo manual por ti.</p>
+            <ol>
+              <li><span><b data-i18n="sv.a.1t">Entendemos tu proceso</b><span data-i18n="sv.a.1d">Nos sentamos contigo a ver cómo trabajas hoy.</span></span></li>
+              <li><span><b data-i18n="sv.a.2t">Lo construimos contigo</b><span data-i18n="sv.a.2d">Por etapas y probando con tus datos reales.</span></span></li>
+              <li><span><b data-i18n="sv.a.3t">Corre solo y tú revisas</b><span data-i18n="sv.a.3d">Tú solo ves las excepciones.</span></span></li>
+            </ol>
+            <ul class="tags"><li data-i18n="sv.a.g1">Conciliaciones</li><li data-i18n="sv.a.g2">Cierre de mes</li><li>CFDI</li><li>ERP</li><li data-i18n="sv.a.g5">Tableros</li></ul>
+            <p class="service__foot"><a class="link-arrow" href="/demo/"><span data-i18n="sv.a.link">Ver un ejemplo en vivo</span> →</a></p>
+          </article>
+          <article class="service service--ases reveal" style="--d:.08s">
+            <span class="service__label" data-i18n="sv.b.label">Asesorías</span>
+            <h3 data-i18n="sv.b.t">Tus números, claros.</h3>
+            <p data-i18n="sv.b.d">Te asesoramos para que leas tus finanzas y decidas con confianza.</p>
+            <ol>
+              <li><span><b data-i18n="sv.b.1t">Te escuchamos</b><span data-i18n="sv.b.1d">Primero entendemos tu empresa y lo que te preocupa.</span></span></li>
+              <li><span><b data-i18n="sv.b.2t">Analizamos tus números</b><span data-i18n="sv.b.2d">Revisamos tu información y encontramos dónde mejorar.</span></span></li>
+              <li><span><b data-i18n="sv.b.3t">Te damos un plan claro</b><span data-i18n="sv.b.3d">Qué hacer primero, explicado sin tecnicismos.</span></span></li>
+            </ol>
+            <ul class="tags"><li data-i18n="sv.b.g1">Flujo de efectivo</li><li data-i18n="sv.b.g2">Presupuestos</li><li data-i18n="sv.b.g3">Planeación financiera</li></ul>
+          </article>
+          <article class="service service--acom reveal" style="--d:.16s">
+            <span class="service__label" data-i18n="sv.c.label">Acompañamiento</span>
+            <h3 data-i18n="sv.c.t">Nunca vas solo.</h3>
+            <p data-i18n="sv.c.d">No entregamos y nos vamos: te guiamos durante todo el camino.</p>
+            <ol>
+              <li><span><b data-i18n="sv.c.1t">Capacitamos a tu equipo</b><span data-i18n="sv.c.1d">Para que todos se sientan cómodos con lo nuevo.</span></span></li>
+              <li><span><b data-i18n="sv.c.2t">Cuidamos que todo funcione</b><span data-i18n="sv.c.2d">Damos seguimiento y soporte cuando lo necesitas.</span></span></li>
+              <li><span><b data-i18n="sv.c.3t">Avanzamos área por área</b><span data-i18n="sv.c.3d">Cuando una ya camina sola, seguimos con la siguiente.</span></span></li>
+            </ol>
+            <ul class="tags"><li data-i18n="sv.c.g1">Capacitación</li><li data-i18n="sv.c.g2">Soporte</li><li data-i18n="sv.c.g3">Mejora continua</li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 4 · Beneficios ============ -->
+    <section class="section section--warm" id="beneficios">
+      <div class="container">
+        <div class="section__head section__head--center reveal">
+          <p class="kicker"><b>4</b><span data-i18n="c4.kicker">Lo que ganas</span></p>
+          <h2 class="h2" data-i18n="c4.title">Control <em>y flexibilidad.</em></h2>
+        </div>
+        <div class="trio">
+          <article class="benefit benefit--1 reveal"><span class="benefit__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3.2 2"/></svg></span><h3 data-i18n="c4.a.t">Tiempo para lo importante</h3><p data-i18n="c4.a.d">Tu equipo deja de capturar y vuelve a analizar, planear y decidir.</p></article>
+          <article class="benefit benefit--2 reveal" style="--d:.08s"><span class="benefit__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 5 6v5.5c0 4.2 2.9 7.4 7 9 4.1-1.6 7-4.8 7-9V6Z"/><path d="m9 12 2.2 2.2L15.2 10"/></svg></span><h3 data-i18n="c4.b.t">Control en todo momento</h3><p data-i18n="c4.b.d">Reglas claras, todo queda registrado y nada se aprueba sin ti.</p></article>
+          <article class="benefit benefit--3 reveal" style="--d:.16s"><span class="benefit__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h9M17 7h3M4 12h3M11 12h9M4 17h11M19 17h1"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="17" cy="17" r="2"/></svg></span><h3 data-i18n="c4.c.t">Flexibilidad a tu medida</h3><p data-i18n="c4.c.d">Empezamos por un área y crecemos a tu ritmo, con los sistemas que ya usas.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 5 · Quién te guía ============ -->
     <section class="section" id="equipo">
       <div class="container">
-        <div class="section__head reveal">
-          <p class="kicker" data-i18n="tm.kicker">Equipo</p>
-          <h2 class="h2" data-i18n="tm.title">Ejecución <em>por fundadores.</em></h2>
-          <p class="section__lead" data-i18n="tm.lead">Experiencia en automatización financiera en Google y trayectoria en firmas Big Four y corporativos globales.</p>
-        </div>
         <div class="team">
-          <article class="person tilt reveal">
-            <div class="person__avatar">IS</div>
+          <div class="team__intro reveal">
+            <p class="kicker"><b>5</b><span data-i18n="c5.kicker">Quién te guía</span></p>
+            <h2 class="h2" data-i18n="c5.title">Somos <em>Iván y Fer.</em></h2>
+            <p class="section__lead" data-i18n="c5.lead">Venimos de las finanzas y la contabilidad, igual que tú. Nosotros mismos trabajamos contigo en cada proyecto.</p>
+            <p style="margin-top:22px"><a class="link-arrow" href="/nosotros.html"><span data-i18n="c5.link">Conoce nuestra historia</span> →</a></p>
+          </div>
+          <article class="person reveal" style="--d:.08s">
+            <div class="person__avatar" title="Aquí va la foto de Iván">I</div>
             <h3>Iván Santiago</h3>
-            <p class="person__role" data-i18n="tm.p1.r">Co-Founder · Automatización &amp; Arquitectura</p>
-            <p data-i18n="tm.p1.d">Experiencia en automatización de procesos financieros en Google y trayectoria en EY y Deloitte. Especialista en automatización con Python y arquitectura ERP (Odoo/SAP).</p>
-            <ul class="tags"><li>Python</li><li>ERP</li><li>BI</li></ul>
+            <p class="person__role" data-i18n="tm.p1.r">Cofundador · Automatización</p>
+            <p data-i18n="tm.p1.d">Automatizó procesos financieros en Google y antes pasó por EY y Deloitte. Es quien construye las herramientas que trabajan por ti.</p>
             <a class="person__link" href="https://www.linkedin.com/in/ivan-santiago-t/" target="_blank" rel="noopener">LinkedIn ↗</a>
           </article>
-          <article class="person tilt reveal">
-            <div class="person__avatar">FT</div>
+          <article class="person reveal" style="--d:.16s">
+            <div class="person__avatar" title="Aquí va la foto de Fer">F</div>
             <h3>Fernanda Tejeda</h3>
-            <p class="person__role" data-i18n="tm.p2.r">Co-Founder · Finanzas &amp; Control</p>
-            <p data-i18n="tm.p2.d">Experiencia en automatización de procesos financieros en Google y trayectoria en PwC Acceleration Centers y Takeda México. Especialista en controllership internacional y optimización de flujos contables. MBA por la Universidad Anáhuac.</p>
-            <ul class="tags"><li>Controllership</li><li>FP&amp;A</li><li data-i18n="tm.p2.tag">Cierre contable</li></ul>
+            <p class="person__role" data-i18n="tm.p2.r">Cofundadora · Finanzas y control</p>
+            <p data-i18n="tm.p2.d">Automatizó procesos financieros en Google y antes pasó por PwC y Takeda México. MBA por la Universidad Anáhuac. Es quien cuida que tus números tengan orden.</p>
             <a class="person__link" href="https://www.linkedin.com/in/fernanda-tejeda-vargas/" target="_blank" rel="noopener">LinkedIn ↗</a>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- ================= CONTACT ================= -->
-    <section class="section contact" id="contacto">
-      <div class="container contact__inner reveal">
-        <span class="badge"><span class="dot"></span><span data-i18n="ct.badge">Escríbenos</span></span>
-        <h2 class="contact__title" data-i18n="ct.title">Automaticemos <em>tu operación.</em></h2>
-        <p class="section__lead" data-i18n="ct.lead">Cuéntanos qué procesos te quitan más tiempo y te respondemos pronto.</p>
-        <div class="hero__ctas contact__ctas">
-          <a class="btn btn--primary magnetic" href="mailto:contacto@trentosolutions.com">contacto@trentosolutions.com</a>
-          <a class="btn btn--ghost magnetic" href="https://www.linkedin.com/in/ivan-santiago-t/" target="_blank" rel="noopener">Iván Santiago ↗</a>
-          <a class="btn btn--ghost magnetic" href="https://www.linkedin.com/in/fernanda-tejeda-vargas/" target="_blank" rel="noopener">Fernanda Tejeda ↗</a>
+    <!-- ============ 6 · Empecemos ============ -->
+    <section class="section section--white" id="contacto">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="kicker"><b>6</b><span data-i18n="c6.kicker">Empecemos</span></p>
+          <h2 class="h2" data-i18n="c6.title">Platiquemos de <em>tu empresa.</em></h2>
+          <p class="section__lead" data-i18n="c6.lead">Déjanos tus datos y te escribimos, o elige tú el día y la hora para una llamada.</p>
+        </div>
+        <div class="reach">
+          <div class="panel reveal">
+            <h3 data-i18n="fm.title">Déjanos tus datos</h3>
+            <form class="form" id="contactForm" novalidate>
+              <label><span data-i18n="fm.name">Tu nombre</span><input name="nombre" autocomplete="name" required /></label>
+              <label><span data-i18n="fm.company">Tu empresa</span><input name="empresa" autocomplete="organization" required /></label>
+              <label><span data-i18n="fm.email">Tu correo</span><input name="correo" type="email" autocomplete="email" required /></label>
+              <label><span><span data-i18n="fm.phone">Tu teléfono</span> <small data-i18n="fm.optional">(opcional)</small></span><input name="telefono" type="tel" autocomplete="tel" /></label>
+              <label class="full"><span data-i18n="fm.msg">¿Qué proceso te quita más tiempo?</span><textarea name="mensaje"></textarea></label>
+              <p class="form__note full" data-i18n="fm.note">Usamos tus datos solo para contactarte. Consulta nuestro <a href="/aviso-privacidad.html">Aviso de Privacidad</a>.</p>
+              <div class="full"><button class="btn btn--primary" type="submit"><span data-i18n="fm.send">Enviar mis datos</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
+              <p class="form__ok full" id="formOk" role="status" data-i18n="fm.ok">Se abrió tu correo con el mensaje listo: solo dale enviar. ¡Gracias!</p>
+            </form>
+          </div>
+          <div class="panel panel--call reveal" id="agenda" style="--d:.1s">
+            <h3 data-i18n="cl.title">Agenda una llamada</h3>
+            <p data-i18n="cl.d">Un diagnóstico gratuito de 30 minutos. Elige el día y la hora que mejor te acomoden: nos cuentas cómo trabajas hoy y te decimos por dónde empezaríamos.</p>
+            <a class="btn btn--primary" id="bookBtn" href="mailto:contacto@trentosolutions.com?subject=Quiero%20agendar%20una%20llamada"><span data-i18n="cl.btn">Ver el calendario</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <p class="alt"><span data-i18n="cl.alt">¿Prefieres escribirnos?</span><br /><a href="mailto:contacto@trentosolutions.com">contacto@trentosolutions.com</a></p>
+          </div>
         </div>
       </div>
     </section>
@@ -256,7 +245,11 @@
   <footer class="footer">
     <div class="container footer__inner">
       <span>© 2026 Trento Solutions S.A.S. · <span data-i18n="ft.city">Ciudad de México</span></span>
-      <a href="aviso-privacidad.html" data-i18n="ft.privacy">Aviso de Privacidad</a>
+      <nav>
+        <a href="/nosotros.html" data-i18n="nav.about">Nosotros</a>
+        <a href="mailto:contacto@trentosolutions.com">contacto@trentosolutions.com</a>
+        <a href="/aviso-privacidad.html" data-i18n="ft.privacy">Aviso de Privacidad</a>
+      </nav>
     </div>
   </footer>
 </body>
